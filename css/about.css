@@ -1,19 +1,112 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #333;
+    line-height: 1.6;
+}
+
+h1, h2 {
+    color: #ff7900; /* Couleur orange principale */
+}
+
+a {
+    text-decoration: none;
+    color: #ff7900;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Section hackathon */
+#hackathon {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#hackathon p {
+    margin: 15px 0;
+    font-size: 1rem;
+    color: #666;
+}
+
+#hackathon img {
+    margin: 20px 0;
+    border: 2px solid #ff7900;
+    border-radius: 8px;
+}
+
+/* Table styles */
 table {
+    width: 80%;
+    margin: 20px auto;
     border-collapse: collapse;
-    width: 50%;
-    margin-top: 10px;
-}
-th, td {
+    background-color: #f9f9f9;
+    font-size: 0.9rem;
     border: 1px solid #ddd;
-    padding: 4px; /* Réduction de l'espacement */
-    text-align: left;
 }
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
 th {
+    background-color: #ff7900;
+    color: #fff;
+}
+
+tr:nth-child(even) {
     background-color: #f4f4f4;
 }
-tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
+
 tr:hover {
-    background-color: #f1f1f1;
+    background-color: #ffe7d1;
+}
+
+/* Footer styles */
+#footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+#footer h2 {
+    color: #ff7900;
+    margin-bottom: 10px;
+}
+
+#footer p {
+    margin: 5px 0;
+}
+
+#footer a {
+    color: #ff7900;
+    font-weight: bold;
+}
+
+#footer a:hover {
+    color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+    }
+
+    #hackathon img {
+        width: 90%;
+    }
+
+    #footer {
+        padding: 15px;
+    }
 }
