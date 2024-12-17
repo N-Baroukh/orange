@@ -1,0 +1,165 @@
+/* Styles pour le bouton de retour en haut */
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px; /* Distance du bas */
+    right: 20px; /* Distance de la droite */
+    background-color: orange; /* Couleur de fond bleue */
+    color: black; /* Couleur de la flèche blanche */
+    border-radius: 50%; /* Forme ronde */
+    width: 50px; /* Largeur du bouton */
+    height: 50px; /* Hauteur du bouton */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px; /* Taille de la flèche */
+    text-decoration: none; /* Supprimer le souligné */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Effet de transition */
+}
+
+.scroll-to-top:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Styles globaux */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+/* Navigation */
+nav {
+    background-color: black;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul img {
+    margin-right: 15px;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #333;
+}
+
+/* Section d'accueil */
+#home {
+    padding: 40px;
+    background-color: #fff;
+    border-top: 4px solid #ff7900;
+    margin-bottom: 20px;
+}
+
+#home h1 {
+    color: #ff7900;
+    font-size: 32px;
+}
+
+.orange-box {
+    background-color: #ffe8d6;
+    padding: 20px;
+    border: 2px solid #ff7900;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.orange-box h3 {
+    margin: 0 0 10px;
+    color: #333;
+}
+
+.orange-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.orange-box ul li {
+    margin-bottom: 10px;
+}
+
+.orange-box ul li strong {
+    color: #ff7900;
+}
+
+/* Table des rentabilités */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th {
+    background-color: #ff7900;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+/* Images */
+img {
+    max-width: 35%;
+    display: block;
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+/* Scroll-to-top button */
+.scroll-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ff7900;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+.scroll-to-top:hover {
+    background-color: #e86b00;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+}
