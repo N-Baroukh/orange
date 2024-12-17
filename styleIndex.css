@@ -195,3 +195,24 @@ img {
         font-size: 20px;
     }
 }
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px; /* Distance du bas */
+    right: 20px; /* Distance de la droite */
+    background-color: orange; /* Couleur de fond bleue */
+    color: black; /* Couleur de la flèche blanche */
+    width: 40px; /* Largeur du bouton */
+    height: 40px; /* Hauteur du bouton */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px; /* Taille de la flèche */
+    text-decoration: none; /* Supprimer le souligné */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Effet de transition */
+}
+
+.scroll-to-top:hover {
+    background-color: orange; /* Couleur de fond bleue plus foncée au survol */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Ombre plus marquée au survol */
+}
