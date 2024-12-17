@@ -110,3 +110,31 @@ tr:hover {
         padding: 15px;
     }
 }
+/* Section Thème */
+#thème {
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9; /* Fond clair pour se démarquer */
+    border-top: 3px solid #ff7900;
+    border-bottom: 3px solid #ff7900;
+    margin: 20px auto;
+}
+
+#thème h2 {
+    color: #ff7900; /* Couleur orange pour le titre */
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+#thème p {
+    color: #333; /* Texte sombre pour un bon contraste */
+    font-size: 1rem;
+    margin: 10px 0 20px;
+}
+
+#thème img {
+    margin-top: 15px;
+    width: 35%;
+    border: 2px solid #ff7900;
+    border-radius: 8px;
+}
