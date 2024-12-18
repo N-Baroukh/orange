@@ -51,7 +51,7 @@ nav ul img {
 }
 
 nav ul li {
-    margin: 0 15px;
+    margin: 0 20px; /* Espacement plus grand entre les éléments */
 }
 
 nav ul li a {
@@ -75,6 +75,7 @@ nav ul li a:hover {
     color: white;
     font-size: 20px;
     cursor: pointer;
+    margin-left: 10px; /* Espacement de gauche */
 }
 
 .navbar-toggler.active {
@@ -99,13 +100,14 @@ nav ul li a:hover {
 }
 
 .navbar-menu.mobile li {
-    margin: 10px 0;
+    margin: 15px 0; /* Espacement vertical entre les éléments */
     text-align: center;
 }
 
 .navbar-menu.mobile li a {
     color: white;
     font-size: 18px;
+    padding: 10px 0; /* Padding pour espacer le texte */
 }
 
 /* Calculatrice */
@@ -191,13 +193,14 @@ button:hover {
 }
 
 /* Responsive Design */
-@media (max-width: 814px) {
+@media only screen and (max-width: 800px) {
     nav ul {
         display: none; /* Masquer le menu horizontal */
     }
 
     .navbar-toggler {
         display: block; /* Afficher le bouton hamburger */
+        margin-left: 20px;
     }
 
     .navbar-menu.mobile {
@@ -205,12 +208,7 @@ button:hover {
     }
 
     nav ul li {
-        margin: 10px 0;
-    }
-
-    button {
-        font-size: 14px;
-        padding: 10px;
+        margin: 15px 0; /* Espacement vertical plus important */
     }
 
     .scroll-to-top {
