@@ -2,8 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-<link rel="stylesheet" href="styleIndex.css">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Graphiques RSE</title>
+    <link href="styleIndex.css" rel="stylesheet">
+    <style>
+        #chartsContainer {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+            flex-wrap: wrap; /* Permet aux graphiques de passer à la ligne si nécessaire */
+        }
+
+        .chart-wrapper {
+            width: 150px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .chart-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        #output {
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 0; /* Remove bottom margin */
+            padding-bottom: 0; /* Ensure no padding */
+        }
+
+        #gaugeContainer {
+            text-align: center;
+            margin-top: -10px; /* Use negative margin if necessary */
+            padding-top: 0; /* Ensure no padding */
+        }
+    </style>
 </head>
 <body>
 <nav>
@@ -17,12 +64,209 @@
         </div>
         <li style="display: flex; align-items: center;">
             <img src="img/avatar.png" alt="connexion" style="width: 25px; margin-right: 5px;">
-            <a href="connexion.html">Mon compte</a>
-        </li>
+            <a href="connexion.html">Mon compte</a></li>
     </ul>
 </nav>
 <section id="bande">
+    <div style="text-align: center; color: orange;">
+        <h1>Bienvenue X</h1>
+    </div>
+    <div id="chartsContainer">
+        <!-- Les graphiques seront ajoutés ici dynamiquement -->
+    </div>
+    <div id="output" style="text-align: center; font-size: 2em; font-weight: bold;"></div>
+    <div id="gaugeContainer">
+        <canvas id="gaugeChart"></canvas>
+    </div>
 </section>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const data = [
+        {label: 'Environnement', value: 80, color: '#4CAF50'}, // Vert
+        {label: 'Droits de l’Homme', value: 70, color: '#FF0000'}, // Rouge
+        {label: 'Gouvernance', value: 80, color: '#FFEB3B'}, // Jaune
+        {label: 'Loyauté des pratiques', value: 45, color: '#9C27B0'}, // Violet
+        {label: 'Client/Consommateur', value: 80, color: '#B0BEC5'}, // Gris
+        {label: 'Relations et conditions de travail', value: 80, color: '#1E88E5'}, // Bleu foncé
+        {label: 'Territoire et intérêt local', value: 80, color: '#81D4FA'} // Bleu ciel
+    ];
 
+    const chartsContainer = document.getElementById('chartsContainer');
+
+    data.forEach((item, index) => {
+        // Crée un conteneur pour chaque graphique
+        const chartWrapper = document.createElement('div');
+        chartWrapper.classList.add('chart-wrapper');
+        chartsContainer.appendChild(chartWrapper);
+
+        // Ajoute un titre pour chaque critère
+        const chartTitle = document.createElement('div');
+        chartTitle.textContent = item.label;
+        chartTitle.classList.add('chart-title');
+        chartWrapper.appendChild(chartTitle);
+
+        // Ajoute un canvas pour le graphique
+        const canvas = document.createElement('canvas');
+        canvas.id = `rseChart${index}`;
+        chartWrapper.appendChild(canvas);
+
+        // Initialise le graphique
+        new Chart(canvas, {
+            type: 'doughnut',
+            data: {
+                labels: ['Acquis', 'Non acquis'],
+                datasets: [{
+                    data: [item.value, 100 - item.value],
+                    backgroundColor: [item.color, '#E0E0E0'], // Couleurs spécifiques et gris
+                    hoverBackgroundColor: [item.color, '#E0E0E0']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false // Masque la légende pour simplifier
+                    },
+                    tooltip: {
+                        enabled: false // Désactive les info-bulles
+                    },
+                    datalabels: {
+                        color: '#000',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        },
+                        formatter: (value, ctx) => {
+                            const dataIndex = ctx.dataIndex;
+                            return dataIndex === 0 ? `${value}%` : ''; // Affiche uniquement le % acquis
+                        }
+                    }
+                }
+            },
+            plugins: [{
+                id: 'centerText',
+                beforeDraw: function (chart) {
+                    const {width} = chart;
+                    const {ctx} = chart;
+                    const text = `${chart.data.datasets[0].data[0]}%`;
+                    ctx.restore();
+                    ctx.font = '16px Arial';
+                    ctx.textBaseline = 'middle';
+                    ctx.textAlign = 'center';
+                    ctx.fillStyle = '#000';
+                    ctx.fillText(text, width / 2, chart.height / 2);
+                    ctx.save();
+                }
+            }]
+        });
+    });
+
+    document.getElementById('output').innerHTML = "Votre score RSE est de " + Math.ceil(data.reduce((sum, item) => sum + item.value, 0) / data.length) + "%";
+    const average = data.reduce((sum, item) => sum + item.value, 0) / data.length;
+
+    // Change the color of the output div based on the average percentage
+    const outputDiv = document.getElementById('output');
+    if (average < 24) {
+        outputDiv.style.backgroundColor = '#FF0000'; // Red
+    } else if (average < 44) {
+        outputDiv.style.backgroundColor = '#FFA500'; // Orange
+    } else if (average < 64) {
+        outputDiv.style.backgroundColor = '#41f012'; // Light Green
+    } else if (average < 80) {
+        outputDiv.style.backgroundColor = '#008000'; // Green
+    } else {
+        outputDiv.style.backgroundColor = '#004d00'; // Dark Green
+    }// Crée le graphique du baromètre pour la moyenne avec une jauge
+    const gaugeChartCanvas = document.getElementById('gaugeChart');
+    const averageDisplay = document.createElement('div');
+    averageDisplay.style.textAlign = 'center';
+    document.body.appendChild(averageDisplay);
+
+    const gaugeChart = new Chart(gaugeChartCanvas, {
+        type: 'doughnut',
+        data: {
+            labels: ['Intangible', 'Incomplet', 'Adapté', 'Exemplaire'],
+            datasets: [{
+                data: [
+                    average < 24 ? average : 24,
+                    average >= 24 && average < 44 ? average - 24 : average >= 24 ? 20 : 0,
+                    average >= 44 && average < 64 ? average - 44 : average >= 44 ? 20 : 0,
+                    average >= 64 && average < 80 ? average - 64 : average >= 64 ? 16 : 0,
+                    average >= 80 ? average - 80 : 0,
+                    100 - average
+                ],
+                backgroundColor: ['#FF0000', '#FFA500', '#41f012', '#008000', '#004d00', '#E0E0E0'],
+                borderColor: '#000',
+                borderWidth: 1,
+                cutout: '70%' // Ajoute un espace au centre pour l'effet de compteur
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            rotation: -90, // Commence à 12 heures
+            circumference: 180, // Affiche seulement la moitié du cercle
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    enabled: true
+                },
+                datalabels: {
+                    color: '#000',
+                    font: {
+                        size: 16,
+                        weight: 'bold'
+                    },
+                    formatter: (value, ctx) => {
+                        const dataIndex = ctx.dataIndex;
+                        return dataIndex === 0 ? `${value}%` : '';
+                    }
+                }
+            }
+        },
+        plugins: [{
+            id: 'centerText',
+            beforeDraw: function (chart) {
+                const {width} = chart;
+                const {ctx} = chart;
+                const text = `${average.toFixed(2)}%`;
+                ctx.restore();
+                ctx.font = '16px Arial';
+                ctx.textBaseline = 'middle';
+                ctx.textAlign = 'center';
+                ctx.fillStyle = average < 24 ? '#FF0000' : average < 44 ? '#FFA500' : average < 64 ? '#41f012' : average < 80 ? '#008000' : '#004d00';
+                ctx.fillText(text, width / 2, chart.height / 1.5); // Adjust text position
+                ctx.save();
+
+                // Calculate the angle for the cursor position
+                const angle = (average / 100) * Math.PI - Math.PI / 2;
+                const x = width / 2 + (chart.innerRadius + 10) * Math.cos(angle);
+                const y = chart.height / 1.5 + (chart.innerRadius + 10) * Math.sin(angle);
+
+                // Draw the cursor line
+                ctx.beginPath();
+                ctx.moveTo(width / 2, chart.height / 1.5);
+                ctx.lineTo(x, y);
+                ctx.lineWidth = 3;
+                ctx.strokeStyle = '#FF5733'; // Cursor color
+                ctx.stroke();
+
+                // Draw a small arrow at the end of the cursor line
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                ctx.lineTo(x - 5, y - 5);
+                ctx.moveTo(x, y);
+                ctx.lineTo(x + 5, y - 5);
+                ctx.strokeStyle = '#FF5733';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.closePath();
+            }
+        }]
+    });
+</script>
 </body>
 </html>
