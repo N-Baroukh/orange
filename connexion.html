@@ -87,15 +87,16 @@
     </a>
 </section>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/calculator.js"></script>
 <script>
     const data = [
         {label: 'Environnement', value: 80, color: '#4CAF50'}, // Vert
-        {label: 'Droits de l’Homme', value: 70, color: '#FF0000'}, // Rouge
-        {label: 'Gouvernance', value: 80, color: '#FFEB3B'}, // Jaune
+        {label: 'Droits de l’Homme', value: 50, color: '#FF0000'}, // Rouge
+        {label: 'Gouvernance', value: 75, color: '#FFEB3B'}, // Jaune
         {label: 'Loyauté des pratiques', value: 45, color: '#9C27B0'}, // Violet
         {label: 'Client/Consommateur', value: 80, color: '#B0BEC5'}, // Gris
-        {label: 'Relations et conditions de travail', value: 80, color: '#1E88E5'}, // Bleu foncé
-        {label: 'Territoire et intérêt local', value: 80, color: '#81D4FA'} // Bleu ciel
+        {label: 'Relations et conditions de travail', value: 50, color: '#1E88E5'}, // Bleu foncé
+        {label: 'Territoire et intérêt local', value: 50, color: '#81D4FA'} // Bleu ciel
     ];
 
     const chartsContainer = document.getElementById('chartsContainer');
@@ -190,23 +191,33 @@
     averageDisplay.style.textAlign = 'center';
     document.body.appendChild(averageDisplay);
 
+    function getLabelBasedOnScore(score) {
+        if (score < 24) {
+            return 'Intangible';
+        } else if (score < 44) {
+            return 'Incomplet';
+        } else if (score < 64) {
+            return 'Adapté';
+        } else {
+            return 'Exemplaire';
+        }
+    }
+
+    const label = getLabelBasedOnScore(average);
+
     const gaugeChart = new Chart(gaugeChartCanvas, {
         type: 'doughnut',
         data: {
-            labels: ['Intangible', 'Incomplet', 'Adapté', 'Exemplaire'],
+            labels: [label, 'Manquant'],
             datasets: [{
-                data: [
-                    average < 24 ? average : 24,
-                    average >= 24 && average < 44 ? average - 24 : average >= 24 ? 20 : 0,
-                    average >= 44 && average < 64 ? average - 44 : average >= 44 ? 20 : 0,
-                    average >= 64 && average < 80 ? average - 64 : average >= 64 ? 16 : 0,
-                    average >= 80 ? average - 80 : 0,
-                    100 - average
+                data: [average, 100 - average],
+                backgroundColor: [
+                    average < 24 ? '#FF0000' : average < 44 ? '#FFA500' : average < 64 ? '#41f012' : average < 80 ? '#008000' : '#004d00', // Color based on score
+                    '#E0E0E0' // Grey for remaining part
                 ],
-                backgroundColor: ['#FF0000', '#FFA500', '#41f012', '#008000', '#004d00', '#E0E0E0'],
                 borderColor: '#000',
                 borderWidth: 1,
-                cutout: '70%' // Ajoute un espace au centre pour l'effet de compteur
+                cutout: '70%' // Adds space in the center for the gauge effect
             }]
         },
         options: {
@@ -239,13 +250,11 @@
             beforeDraw: function (chart) {
                 const {width} = chart;
                 const {ctx} = chart;
-                const text = `${average.toFixed(2)}%`;
                 ctx.restore();
                 ctx.font = '16px Arial';
                 ctx.textBaseline = 'middle';
                 ctx.textAlign = 'center';
                 ctx.fillStyle = average < 24 ? '#FF0000' : average < 44 ? '#FFA500' : average < 64 ? '#41f012' : average < 80 ? '#008000' : '#004d00';
-                ctx.fillText(text, width / 2, chart.height / 1.5); // Adjust text position
                 ctx.save();
 
                 // Calculate the angle for the cursor position
