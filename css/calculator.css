@@ -3,87 +3,127 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f7f7f7;
+    background-color: black;
     color: #333;
 }
 
-/* Style pour le bouton de retour en haut */
+/* Navigation */
 .scroll-to-top {
     position: fixed;
-    bottom: 20px; /* Distance du bas */
-    right: 20px; /* Distance de la droite */
-    background-color: orange; /* Couleur de fond orange */
-    color: black; /* Couleur de la flèche noire */
-    border-radius: 50%; /* Forme ronde */
-    width: 50px; /* Largeur du bouton */
-    height: 50px; /* Hauteur du bouton */
+    bottom: 20px;
+    right: 20px;
+    background-color: orange;
+    color: black;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px; /* Taille de la flèche */
-    text-decoration: none; /* Supprimer le souligné */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre */
-    transition: background-color 0.3s, box-shadow 0.3s; /* Effet de transition */
+    font-size: 24px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .scroll-to-top:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Navigation */
+/* Style pour la navigation */
 nav {
-    background-color: #000; /* Fond noir pour la barre de navigation */
-    border-bottom: 3px solid #ff7900; /* Ligne orange en dessous */
-    padding: 10px 0;
+    background-color: black;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 nav ul {
     list-style: none;
-    padding: 0;
+    display: flex;
+    justify-content: space-evenly; /* Espacement égal entre les éléments */
     margin: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-nav ul div {
-    display: flex;
-    align-items: center;
+    padding: 0;
 }
 
 nav ul li {
-    margin: 0 10px;
+    padding: 0 20px; /* Padding entre chaque élément pour plus d'espace */
 }
 
 nav ul li a {
+    color: white;
     text-decoration: none;
-    color: #fff; /* Texte blanc */
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 16px;
+    transition: color 0.3s;
 }
 
 nav ul li a:hover {
-    color: #ff7900; /* Texte en orange au survol */
+    color: #333;
 }
 
-nav img {
-    display: inline-block;
-    vertical-align: middle;
+/* Style pour le bouton hamburger (menu mobile) */
+.navbar-toggler {
+    display: none; /* Caché par défaut */
+    background-color: orange;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 10px; /* Espacement de gauche */
+}
+
+.navbar-toggler.active {
+    background-color: #333;
+}
+
+.navbar-menu {
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-menu.mobile {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 60px; /* Juste en dessous du menu */
+    left: 0;
+    background-color: black;
+    padding: 10px;
+    border-top: 2px solid #ff7900;
+}
+
+.navbar-menu.mobile li {
+    margin: 20px 0; /* Espacement vertical plus important entre les éléments */
+    text-align: center;
+}
+
+.navbar-menu.mobile li a {
+    color: white;
+    font-size: 18px;
+    padding: 10px 0; /* Padding pour espacer le texte */
+}
+
+/* Calculatrice */
+#calculator {
+    padding: 40px;
+    border-top: 4px solid #ff7900;
+    margin-bottom: 20px;
 }
 
 /* Mise en page du contenu principal */
 .container {
     width: 80%;
-    margin: 0 auto;
+    max-width: 800px;
+    margin: 30px auto;
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    margin-top: 30px;
 }
 
-/* Formulaires et boutons */
+/* Centrage des boutons */
 button {
     background-color: #f77f00;
     color: white;
@@ -93,6 +133,9 @@ button {
     cursor: pointer;
     border-radius: 5px;
     margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 button:hover {
@@ -106,12 +149,11 @@ button:hover {
     margin-bottom: 20px;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .criteria label {
     font-size: 16px;
-    margin-right: 10px;
-    font-weight: normal;
     margin-bottom: 10px;
     display: block;
 }
@@ -127,6 +169,7 @@ button:hover {
     margin-top: 20px;
     border-radius: 5px;
     display: none;
+    text-align: center;
 }
 
 .result p {
@@ -144,88 +187,33 @@ button:hover {
     text-align: center;
 }
 
-/* Animation des résultats */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
+/* Centering the container on mobile devices */
+@media only screen and (max-width: 800px) {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
     }
-    to {
-        opacity: 1;
-    }
-}
 
-.result {
-    animation: fadeIn 1s ease-in;
-}
-
-/* Responsive Design */
-
-@media only screen and (max-width: 768px) {
     .container {
         width: 90%;
         padding: 10px;
     }
-
-    /* Réduire la taille de police des titres */
-    h1, h2, h3 {
-        font-size: 1.5rem;
-    }
-
-    button {
-        width: 100%;
-        font-size: 14px;
-        padding: 10px;
-    }
-
-    nav ul {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    nav ul li {
-        margin: 10px 0;
-    }
-
-    nav ul div {
-        flex-direction: column;
-    }
-
-    .criteria label {
-        font-size: 14px;
-    }
-
-    .scroll-to-top {
-        bottom: 15px;
-        right: 15px;
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
-    }
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 500px) {
     body {
-        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
     }
 
     .container {
-        width: 95%;
-    }
-
-    button {
-        font-size: 12px;
-        padding: 8px;
-    }
-
-    .criteria label {
-        font-size: 12px;
-    }
-
-    .scroll-to-top {
-        bottom: 10px;
-        right: 10px;
-        width: 35px;
-        height: 35px;
-        font-size: 16px;
+        width: 100%;
+        padding: 5px;
     }
 }
