@@ -1,10 +1,19 @@
-/* Styles pour le bouton de retour en haut */
+/* Styles généraux */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+/* Style pour le bouton de retour en haut */
 .scroll-to-top {
     position: fixed;
     bottom: 20px; /* Distance du bas */
     right: 20px; /* Distance de la droite */
-    background-color: orange; /* Couleur de fond bleue */
-    color: black; /* Couleur de la flèche blanche */
+    background-color: orange; /* Couleur de fond orange */
+    color: black; /* Couleur de la flèche noire */
     border-radius: 50%; /* Forme ronde */
     width: 50px; /* Largeur du bouton */
     height: 50px; /* Hauteur du bouton */
@@ -19,15 +28,6 @@
 
 .scroll-to-top:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-}
-
-/* Styles globaux */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f7f7f7;
-    color: #333;
 }
 
 /* Navigation */
@@ -72,34 +72,160 @@ nav img {
     vertical-align: middle;
 }
 
-
-h1 {
-    color: #2c3e50;
-}
+/* Mise en page du contenu principal */
 .container {
-    max-width: 800px;
+    width: 80%;
     margin: 0 auto;
-    background-color: #f7f7f7;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 30px;
 }
+
+/* Formulaires et boutons */
+button {
+    background-color: #f77f00;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #ff8c00;
+}
+
+/* Style pour les sections de critères */
 .criteria {
+    background-color: #f1f1f1;
+    padding: 15px;
     margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
-.criteria h2 {
-    margin-bottom: 10px;
-}
+
 .criteria label {
+    font-size: 16px;
+    margin-right: 10px;
+    font-weight: normal;
+    margin-bottom: 10px;
     display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
 }
+
 .criteria input[type="radio"] {
     margin-right: 10px;
 }
+
+/* Style pour les résultats */
 .result {
+    background-color: #e0f7fa;
+    padding: 15px;
     margin-top: 20px;
+    border-radius: 5px;
+    display: none;
+}
+
+.result p {
     font-size: 18px;
     font-weight: bold;
+}
+
+/* Style pour les messages d'alerte */
+.alert {
+    background-color: #ffcccc;
+    color: #d8000c;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Animation des résultats */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.result {
+    animation: fadeIn 1s ease-in;
+}
+
+/* Responsive Design */
+
+@media only screen and (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 10px;
+    }
+
+    /* Réduire la taille de police des titres */
+    h1, h2, h3 {
+        font-size: 1.5rem;
+    }
+
+    button {
+        width: 100%;
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    nav ul div {
+        flex-direction: column;
+    }
+
+    .criteria label {
+        font-size: 14px;
+    }
+
+    .scroll-to-top {
+        bottom: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        width: 95%;
+    }
+
+    button {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .criteria label {
+        font-size: 12px;
+    }
+
+    .scroll-to-top {
+        bottom: 10px;
+        right: 10px;
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
 }
