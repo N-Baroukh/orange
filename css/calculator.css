@@ -51,7 +51,7 @@ nav ul img {
 }
 
 nav ul li {
-    margin: 0 20px; /* Espacement plus grand entre les éléments */
+    margin: 0 25px; /* Augmentation de l'espacement entre les éléments */
 }
 
 nav ul li a {
@@ -100,7 +100,7 @@ nav ul li a:hover {
 }
 
 .navbar-menu.mobile li {
-    margin: 15px 0; /* Espacement vertical entre les éléments */
+    margin: 20px 0; /* Espacement vertical plus important entre les éléments */
     text-align: center;
 }
 
@@ -208,7 +208,7 @@ button:hover {
     }
 
     nav ul li {
-        margin: 15px 0; /* Espacement vertical plus important */
+        margin: 20px 0; /* Espacement vertical entre les éléments */
     }
 
     .scroll-to-top {
