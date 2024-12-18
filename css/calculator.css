@@ -10,20 +10,20 @@ body {
 /* Style pour le bouton de retour en haut */
 .scroll-to-top {
     position: fixed;
-    bottom: 20px; /* Distance du bas */
-    right: 20px; /* Distance de la droite */
-    background-color: orange; /* Couleur de fond orange */
-    color: black; /* Couleur de la flèche noire */
-    border-radius: 50%; /* Forme ronde */
-    width: 50px; /* Largeur du bouton */
-    height: 50px; /* Hauteur du bouton */
+    bottom: 20px;
+    right: 20px;
+    background-color: orange;
+    color: black;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px; /* Taille de la flèche */
-    text-decoration: none; /* Supprimer le souligné */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre */
-    transition: background-color 0.3s, box-shadow 0.3s; /* Effet de transition */
+    font-size: 24px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .scroll-to-top:hover {
@@ -32,8 +32,8 @@ body {
 
 /* Navigation */
 nav {
-    background-color: #000; /* Fond noir pour la barre de navigation */
-    border-bottom: 3px solid #ff7900; /* Ligne orange en dessous */
+    background-color: #000;
+    border-bottom: 3px solid #ff7900;
     padding: 10px 0;
 }
 
@@ -58,13 +58,13 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: #fff; /* Texte blanc */
+    color: #fff;
     font-weight: bold;
     font-size: 1rem;
 }
 
 nav ul li a:hover {
-    color: #ff7900; /* Texte en orange au survol */
+    color: #ff7900;
 }
 
 nav img {
@@ -93,6 +93,7 @@ button {
     cursor: pointer;
     border-radius: 5px;
     margin-top: 20px;
+    width: auto;
 }
 
 button:hover {
@@ -160,21 +161,21 @@ button:hover {
 
 /* Responsive Design */
 
+/* Pour les tablettes et appareils similaires */
 @media only screen and (max-width: 768px) {
     .container {
         width: 90%;
         padding: 10px;
     }
 
-    /* Réduire la taille de police des titres */
     h1, h2, h3 {
         font-size: 1.5rem;
     }
 
     button {
-        width: 100%;
         font-size: 14px;
         padding: 10px;
+        width: 100%;
     }
 
     nav ul {
@@ -203,6 +204,7 @@ button:hover {
     }
 }
 
+/* Pour les petits écrans (iPhone 13 inclus) */
 @media only screen and (max-width: 480px) {
     body {
         font-size: 14px;
