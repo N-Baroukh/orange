@@ -189,51 +189,41 @@ button:hover {
 
 /* Responsive Design */
 @media only screen and (max-width: 800px) {
-    nav ul {
-        display: none; /* Masquer le menu horizontal */
+    .container {
+        width: 90%;
+        padding: 10px;
     }
 
-    .navbar-toggler {
-        display: block; /* Afficher le bouton hamburger */
-        margin-left: 20px;
+    .criteria {
+        padding: 10px;
     }
 
-    .navbar-menu.mobile {
-        display: flex; /* Afficher le menu mobile */
+    button {
+        font-size: 14px;
+        padding: 8px 16px;
     }
 
-    nav ul li {
-        margin: 20px 0; /* Espacement vertical entre les éléments */
-    }
-
-    .scroll-to-top {
-        bottom: 15px;
-        right: 15px;
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
+    .result p {
+        font-size: 16px;
     }
 }
 
 @media only screen and (max-width: 500px) {
-    body {
-        font-size: 14px;
+    .container {
+        width: 100%;
+        padding: 5px;
+    }
+
+    .criteria {
+        padding: 5px;
     }
 
     button {
         font-size: 12px;
-        padding: 8px;
+        padding: 6px 12px;
     }
 
-    .criteria label {
-        font-size: 12px;
-    }
-
-    .scroll-to-top {
-        bottom: 10px;
-        right: 10px;
-        width: 35px;
-        height: 35px;
-        font-size: 16px;
+    .result p {
+        font-size: 14px;
     }
 }
