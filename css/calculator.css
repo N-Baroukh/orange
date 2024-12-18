@@ -187,6 +187,56 @@ button:hover {
     text-align: center;
 }
 
+/* Responsive Design */
+@media only screen and (max-width: 800px) {
+    nav ul {
+        display: none; /* Masquer le menu horizontal */
+    }
+
+    .navbar-toggler {
+        display: block; /* Afficher le bouton hamburger */
+        margin-left: 20px;
+    }
+
+    .navbar-menu.mobile {
+        display: flex; /* Afficher le menu mobile */
+    }
+
+    nav ul li {
+        margin: 20px 0; /* Espacement vertical entre les éléments */
+    }
+
+    .scroll-to-top {
+        bottom: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    body {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .criteria label {
+        font-size: 12px;
+    }
+
+    .scroll-to-top {
+        bottom: 10px;
+        right: 10px;
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+}
 /* Footer styles */
 #footer {
     background-color: #333;
