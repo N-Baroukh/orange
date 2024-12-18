@@ -187,37 +187,6 @@ button:hover {
     text-align: center;
 }
 
-/* Centering the container on mobile devices */
-@media only screen and (max-width: 800px) {
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-    }
-
-    .container {
-        width: 90%;
-        padding: 10px;
-    }
-}
-
-@media only screen and (max-width: 500px) {
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-    }
-
-    .container {
-        width: 100%;
-        padding: 5px;
-    }
-}
-
 /* Footer styles */
 #footer {
     background-color: #333;
