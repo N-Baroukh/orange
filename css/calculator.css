@@ -193,7 +193,7 @@ button:hover {
 }
 
 /* Responsive Design */
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 881px) {
     nav ul {
         display: none; /* Masquer le menu horizontal */
     }
@@ -220,7 +220,7 @@ button:hover {
     }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 881px) {
     body {
         font-size: 14px;
     }
