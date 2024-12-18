@@ -1,11 +1,75 @@
-/* Global styles */
+/* Styles pour le bouton de retour en haut */
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px; /* Distance du bas */
+    right: 20px; /* Distance de la droite */
+    background-color: orange; /* Couleur de fond bleue */
+    color: black; /* Couleur de la flèche blanche */
+    border-radius: 50%; /* Forme ronde */
+    width: 50px; /* Largeur du bouton */
+    height: 50px; /* Hauteur du bouton */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px; /* Taille de la flèche */
+    text-decoration: none; /* Supprimer le souligné */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Effet de transition */
+}
+
+.scroll-to-top:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Styles globaux */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #fff;
+    background-color: #f7f7f7;
     color: #333;
-    line-height: 1.6;
+}
+
+/* Navigation */
+nav {
+    background-color: #000; /* Fond noir pour la barre de navigation */
+    border-bottom: 3px solid #ff7900; /* Ligne orange en dessous */
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+nav ul div {
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff; /* Texte blanc */
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+nav ul li a:hover {
+    color: #ff7900; /* Texte en orange au survol */
+}
+
+nav img {
+    display: inline-block;
+    vertical-align: middle;
 }
 
 h1, h2 {
@@ -71,6 +135,7 @@ tr:hover {
 }
 
 /* Footer styles */
+/* Footer styles */
 #footer {
     background-color: #333;
     color: #fff;
@@ -80,36 +145,36 @@ tr:hover {
 
 #footer h2 {
     color: #ff7900;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
-#footer p {
+#footer .contact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px; /* Espacement entre les éléments */
+}
+
+#footer .contact div {
+    text-align: center;
+    min-width: 150px; /* Taille minimale pour les blocs */
+}
+
+#footer .contact p {
     margin: 5px 0;
+    font-size: 0.9rem;
 }
 
-#footer a {
+#footer .contact a {
     color: #ff7900;
     font-weight: bold;
 }
 
-#footer a:hover {
+#footer .contact a:hover {
     color: #fff;
+    text-decoration: underline;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    table {
-        width: 100%;
-    }
-
-    #hackathon img {
-        width: 90%;
-    }
-
-    #footer {
-        padding: 15px;
-    }
-}
 /* Section Thème */
 #thème {
     padding: 20px;
