@@ -1,10 +1,181 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Calculateur</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur RSE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .criteria {
+            margin-bottom: 20px;
+        }
+        .criteria h2 {
+            margin-bottom: 10px;
+        }
+        .criteria label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .criteria input[type="radio"] {
+            margin-right: 10px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .stat {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
+<div class="container">
+    <h1>Calculateur de Responsabilité Sociétale des Entreprises (RSE)</h1>
+    <p>Répondez par "Oui" ou "Non" à chaque question pour évaluer votre entreprise sur les différents critères RSE.</p>
 
+    <div id="form">
+        <div class="criteria" id="impact_environnemental">
+            <h2>Impact environnemental</h2>
+            <label>Réduisez-vous les émissions de CO2 ?</label>
+            <input type="radio" name="impact_co2" value="1"> Oui
+            <input type="radio" name="impact_co2" value="0"> Non
+            <br>
+            <label>Gérez-vous efficacement vos déchets ?</label>
+            <input type="radio" name="impact_dechets" value="1"> Oui
+            <input type="radio" name="impact_dechets" value="0"> Non
+            <br>
+            <label>Utilisez-vous des énergies renouvelables ?</label>
+            <input type="radio" name="impact_energies" value="1"> Oui
+            <input type="radio" name="impact_energies" value="0"> Non
+        </div>
+
+        <div class="criteria" id="conditions_travail">
+            <h2>Conditions de travail</h2>
+            <label>Offrez-vous un environnement de travail sûr ?</label>
+            <input type="radio" name="conditions_surete" value="1"> Oui
+            <input type="radio" name="conditions_surete" value="0"> Non
+            <br>
+            <label>Votre entreprise favorise-t-elle la diversité et l'inclusion ?</label>
+            <input type="radio" name="conditions_diversite" value="1"> Oui
+            <input type="radio" name="conditions_diversite" value="0"> Non
+            <br>
+            <label>Proposez-vous des formations régulières à vos employés ?</label>
+            <input type="radio" name="conditions_formation" value="1"> Oui
+            <input type="radio" name="conditions_formation" value="0"> Non
+        </div>
+
+        <div class="criteria" id="engagement_societal">
+            <h2>Engagement sociétal</h2>
+            <label>Soutenez-vous des initiatives locales ?</label>
+            <input type="radio" name="engagement_local" value="1"> Oui
+            <input type="radio" name="engagement_local" value="0"> Non
+            <br>
+            <label>Votre entreprise est-elle impliquée dans des actions éthiques ?</label>
+            <input type="radio" name="engagement_ethique" value="1"> Oui
+            <input type="radio" name="engagement_ethique" value="0"> Non
+            <br>
+            <label>Offrez-vous des dons ou du bénévolat à des causes sociales ?</label>
+            <input type="radio" name="engagement_dons" value="1"> Oui
+            <input type="radio" name="engagement_dons" value="0"> Non
+        </div>
+
+        <div class="criteria" id="gouvernance">
+            <h2>Gouvernance</h2>
+            <label>Votre entreprise respecte-t-elle toutes les régulations ?</label>
+            <input type="radio" name="gouvernance_regulations" value="1"> Oui
+            <input type="radio" name="gouvernance_regulations" value="0"> Non
+            <br>
+            <label>Communiquez-vous de manière transparente sur vos actions ?</label>
+            <input type="radio" name="gouvernance_transparence" value="1"> Oui
+            <input type="radio" name="gouvernance_transparence" value="0"> Non
+            <br>
+            <label>Votre entreprise a-t-elle une politique de conformité claire ?</label>
+            <input type="radio" name="gouvernance_conformite" value="1"> Oui
+            <input type="radio" name="gouvernance_conformite" value="0"> Non
+        </div>
+
+        <button onclick="calculerScoreRSE()">Calculer le score RSE</button>
+    </div>
+
+    <div id="result" class="result" style="display: none;"></div>
+    <div id="stat" class="stat" style="display: none;"></div>
+</div>
+
+<script>
+    function calculerScoreRSE() {
+        const criteres = {
+            "Impact environnemental": 0.4,
+            "Conditions de travail": 0.3,
+            "Engagement sociétal": 0.2,
+            "Gouvernance": 0.1
+        };
+
+        // Fonction pour calculer la moyenne d'un groupe de réponses (Oui = 1, Non = 0)
+        function calculerMoyenne(criteriaName) {
+            const answers = document.querySelectorAll(`input[name^="${criteriaName}"]`);
+            let total = 0;
+            let count = 0;
+
+            answers.forEach(answer => {
+                if (answer.checked) {
+                    total += parseInt(answer.value);
+                    count++;
+                }
+            });
+
+            return count > 0 ? total / count : 0;  // Si aucune réponse n'est sélectionnée, on retourne 0
+        }
+
+        // Calculer les moyennes pour chaque critère
+        const moyenneImpactEnvironnemental = calculerMoyenne('impact');
+        const moyenneConditionsTravail = calculerMoyenne('conditions');
+        const moyenneEngagementSocietal = calculerMoyenne('engagement');
+        const moyenneGouvernance = calculerMoyenne('gouvernance');
+
+        // Calculer le score total en fonction des moyennes et des poids
+        let scoreTotal = 0;
+        scoreTotal += moyenneImpactEnvironnemental * criteres["Impact environnemental"];
+        scoreTotal += moyenneConditionsTravail * criteres["Conditions de travail"];
+        scoreTotal += moyenneEngagementSocietal * criteres["Engagement sociétal"];
+        scoreTotal += moyenneGouvernance * criteres["Gouvernance"];
+
+        // Afficher le score et le message
+        const resultDiv = document.getElementById("result");
+        const statDiv = document.getElementById("stat");
+
+        resultDiv.style.display = 'block';
+        resultDiv.textContent = `Votre score RSE global est de : ${scoreTotal.toFixed(2)} / 10`;
+
+        // Affichage du message de stat
+        if (scoreTotal >= 8) {
+            statDiv.style.display = 'block';
+            statDiv.textContent = "Excellent ! Votre entreprise est très performante en matière de RSE.";
+        } else if (scoreTotal >= 5) {
+            statDiv.style.display = 'block';
+            statDiv.textContent = "Bon travail, mais il y a encore des marges d'amélioration.";
+        } else {
+            statDiv.style.display = 'block';
+            statDiv.textContent = "Votre entreprise doit mettre en place des actions pour améliorer sa performance RSE.";
+        }
+    }
+</script>
 </body>
 </html>
