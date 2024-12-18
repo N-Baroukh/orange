@@ -1,10 +1,3 @@
-const criteres = {
-    "Impact environnemental": 4,
-    "Conditions de travail": 3,
-    "Engagement sociétal": 2,
-    "Gouvernance": 1
-};
-
 // Fonction pour calculer la moyenne d'un groupe de réponses (Oui = 1, Non = 0)
 function calculerMoyenne(criteriaName) {
     const answers = document.querySelectorAll(`input[name^="${criteriaName}"]`);
@@ -21,38 +14,44 @@ function calculerMoyenne(criteriaName) {
     return count > 0 ? total / count : 0;  // Si aucune réponse n'est sélectionnée, on retourne 0
 }
 
-// Fonction pour calculer le score par thème
-function calculerScoreParTheme(theme) {
-    const moyenne = calculerMoyenne(theme);
-    let score = moyenne;
+// Fonction pour calculer le score par critère
+function calculerScoreParCritere(critere) {
+    // Sélectionner tous les boutons radio pour ce critère
+    const radios = document.querySelectorAll(`#${critere} input[type="radio"]:checked`);
 
-    if (theme === 'impact') {
-        document.getElementById("result_impact").style.display = 'block';
-        document.getElementById("result_impact").textContent = `Score Impact Environnemental: ${(score * 100).toFixed(2)} / 100`;
-    } else if (theme === 'conditions') {
-        document.getElementById("result_conditions").style.display = 'block';
-        document.getElementById("result_conditions").textContent = `Score Conditions de Travail: ${(score * 100).toFixed(2)} / 100`;
-    } else if (theme === 'engagement') {
-        document.getElementById("result_engagement").style.display = 'block';
-        document.getElementById("result_engagement").textContent = `Score Engagement Sociétal: ${(score * 100).toFixed(2)} / 100`;
-    } else if (theme === 'gouvernance') {
-        document.getElementById("result_gouvernance").style.display = 'block';
-        document.getElementById("result_gouvernance").textContent = `Score Gouvernance: ${(score * 100).toFixed(2)} / 100`;
-    }
+    // Déterminer le nombre total de questions dans ce critère (nombre de boutons radio par question)
+    const totalQuestions = document.querySelectorAll(`#${critere} input[type="radio"]`).length / 2; // 2 options (Oui/Non) par question
+    let score = 0;
+
+    // Parcourir les radios sélectionnées et compter le nombre de "Oui"
+    radios.forEach(radio => {
+        if (radio.value === "1") {
+            score += 1;  // Ajoute 1 pour chaque réponse "Oui"
+        }
+    });
+
+    // Calculer le score en pourcentage
+    const scorePercentage = (score / totalQuestions) * 100;
+
+    // Afficher le résultat
+    document.getElementById(`result_${critere}`).style.display = 'block';
+    document.getElementById(`result_${critere}`).textContent = `${critere.charAt(0).toUpperCase() + critere.slice(1)} : ${scorePercentage.toFixed(2)}/100`;
 }
 
 // Fonction pour calculer le score global
 function calculerScoreGlobal() {
     let scoreTotal = 0;
+    let count = 0;
 
-    // Calculer les scores par thème
-    scoreTotal += calculerMoyenne('impact') * criteres["Impact environnemental"] * 10;
-    scoreTotal += calculerMoyenne('conditions') * criteres["Conditions de travail"] * 10;
-    scoreTotal += calculerMoyenne('engagement') * criteres["Engagement sociétal"] * 10;
-    scoreTotal += calculerMoyenne('gouvernance') * criteres["Gouvernance"] * 10;
+    const criteres = ["impact", "conditions", "engagement", "gouvernance", "relations", "fournisseurs", "communautes", "ethique"];
 
-    // Afficher le score global
-    const resultDiv = document.getElementById("result_global");
-    resultDiv.style.display = 'block';
-    resultDiv.textContent = `Votre score global RSE est de : ${scoreTotal.toFixed(2)} / 100`;
+    for (const critere of criteres) {
+        const moyenne = calculerMoyenne(critere);
+        scoreTotal += moyenne * 100;  // Pondération du critère
+        count++;
+    }
+
+    const scoreGlobal = scoreTotal / count;
+    document.getElementById('result_global').style.display = 'block';
+    document.getElementById('result_global').textContent = `Score global RSE : ${scoreGlobal.toFixed(2)} /100`;
 }

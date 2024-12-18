@@ -30,9 +30,9 @@
     <h1>Calculateur de Responsabilité Sociétale des Entreprises (RSE)</h1>
     <p>Répondez par "Oui" ou "Non" à chaque question pour évaluer votre entreprise sur les différents critères RSE.</p>
 
-    <!-- Calculateur par thème -->
+    <!-- Calculateur par critère -->
     <div id="form">
-        <h2>Calcul par thème</h2>
+        <h2>Calcul par critère</h2>
 
         <div class="criteria" id="impact_environnemental">
             <h3>Impact environnemental</h3>
@@ -49,7 +49,7 @@
             <input type="radio" name="impact_energies" value="0"> Non
         </div>
 
-        <button onclick="calculerScoreParTheme('impact')">Calculer Impact Environnemental</button>
+        <button onclick="calculerScoreParCritere('impact')">Calculer Impact Environnemental</button>
         <div id="result_impact" class="result" style="display: none;"></div>
 
         <div class="criteria" id="conditions_travail">
@@ -67,7 +67,7 @@
             <input type="radio" name="conditions_formation" value="0"> Non
         </div>
 
-        <button onclick="calculerScoreParTheme('conditions')">Calculer Conditions de travail</button>
+        <button onclick="calculerScoreParCritere('conditions')">Calculer Conditions de Travail</button>
         <div id="result_conditions" class="result" style="display: none;"></div>
 
         <div class="criteria" id="engagement_societal">
@@ -85,7 +85,7 @@
             <input type="radio" name="engagement_dons" value="0"> Non
         </div>
 
-        <button onclick="calculerScoreParTheme('engagement')">Calculer Engagement sociétal</button>
+        <button onclick="calculerScoreParCritere('engagement')">Calculer Engagement Sociétal</button>
         <div id="result_engagement" class="result" style="display: none;"></div>
 
         <div class="criteria" id="gouvernance">
@@ -103,8 +103,80 @@
             <input type="radio" name="gouvernance_conformite" value="0"> Non
         </div>
 
-        <button onclick="calculerScoreParTheme('gouvernance')">Calculer Gouvernance</button>
+        <button onclick="calculerScoreParCritere('gouvernance')">Calculer Gouvernance</button>
         <div id="result_gouvernance" class="result" style="display: none;"></div>
+
+        <div class="criteria" id="clients">
+            <h3>Relations avec les clients</h3>
+            <label>Proposez-vous des produits/services durables ?</label>
+            <input type="radio" name="clients_durables" value="1"> Oui
+            <input type="radio" name="clients_durables" value="0"> Non
+            <br>
+            <label>Votre entreprise garantit-elle la qualité de ses produits/services ?</label>
+            <input type="radio" name="clients_qualite" value="1"> Oui
+            <input type="radio" name="clients_qualite" value="0"> Non
+            <br>
+            <label>Écoutez-vous activement les retours de vos clients ?</label>
+            <input type="radio" name="clients_retours" value="1"> Oui
+            <input type="radio" name="clients_retours" value="0"> Non
+        </div>
+
+        <button onclick="calculerScoreParCritere('clients')">Calculer Relations avec les Clients</button>
+        <div id="result_clients" class="result" style="display: none;"></div>
+
+        <div class="criteria" id="relation_avec_fournisseurs">
+            <h3>Relations avec les fournisseurs</h3>
+            <label>Respectez-vous les critères sociaux et environnementaux avec vos fournisseurs ?</label>
+            <input type="radio" name="fournisseurs_respect" value="1"> Oui
+            <input type="radio" name="fournisseurs_respect" value="0"> Non
+            <br>
+            <label>Vos fournisseurs sont-ils engagés dans des pratiques durables ?</label>
+            <input type="radio" name="fournisseurs_pratiques" value="1"> Oui
+            <input type="radio" name="fournisseurs_pratiques" value="0"> Non
+            <br>
+            <label>Évaluez-vous régulièrement la performance de vos fournisseurs ?</label>
+            <input type="radio" name="fournisseurs_evaluation" value="1"> Oui
+            <input type="radio" name="fournisseurs_evaluation" value="0"> Non
+        </div>
+
+        <button onclick="calculerScoreParCritere('fournisseurs')">Calculer Relations avec les Fournisseurs</button>
+        <div id="result_fournisseurs" class="result" style="display: none;"></div>
+
+        <div class="criteria" id="respect_communautes">
+            <h3>Respect des communautés</h3>
+            <label>Votre entreprise soutient-elle des initiatives pour la communauté ?</label>
+            <input type="radio" name="communautes_soutien" value="1"> Oui
+            <input type="radio" name="communautes_soutien" value="0"> Non
+            <br>
+            <label>Promouvez-vous des initiatives pour la réduction des inégalités ?</label>
+            <input type="radio" name="communautes_inegalites" value="1"> Oui
+            <input type="radio" name="communautes_inegalites" value="0"> Non
+            <br>
+            <label>Favorisez-vous la cohésion sociale dans les zones où vous êtes implantés ?</label>
+            <input type="radio" name="communautes_cohesion" value="1"> Oui
+            <input type="radio" name="communautes_cohesion" value="0"> Non
+        </div>
+
+        <button onclick="calculerScoreParCritere('communautes')">Calculer Respect des Communautés</button>
+        <div id="result_communautes" class="result" style="display: none;"></div>
+
+        <div class="criteria" id="ethique">
+            <h3>Éthique</h3>
+            <label>Votre entreprise applique-t-elle des pratiques commerciales éthiques ?</label>
+            <input type="radio" name="ethique_commerciale" value="1"> Oui
+            <input type="radio" name="ethique_commerciale" value="0"> Non
+            <br>
+            <label>Avez-vous une politique de lutte contre la corruption ?</label>
+            <input type="radio" name="ethique_corruption" value="1"> Oui
+            <input type="radio" name="ethique_corruption" value="0"> Non
+            <br>
+            <label>Votre entreprise favorise-t-elle des pratiques de transparence dans ses opérations ?</label>
+            <input type="radio" name="ethique_transparence" value="1"> Oui
+            <input type="radio" name="ethique_transparence" value="0"> Non
+        </div>
+
+        <button onclick="calculerScoreParCritere('ethique')">Calculer Éthique</button>
+        <div id="result_ethique" class="result" style="display: none;"></div>
 
         <hr>
         <!-- Calculateur global -->
@@ -114,7 +186,8 @@
     </div>
 </div>
 
-<script  src="js/calculator.js">
+<script src="js/calculator.js">
+
 </script>
 </body>
 </html>
