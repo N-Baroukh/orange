@@ -217,3 +217,43 @@ button:hover {
         padding: 5px;
     }
 }
+
+/* Footer styles */
+#footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+#footer h2 {
+    color: #ff7900;
+    margin-bottom: 15px;
+}
+
+#footer .contact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px; /* Espacement entre les éléments */
+}
+
+#footer .contact div {
+    text-align: center;
+    min-width: 150px; /* Taille minimale pour les blocs */
+}
+
+#footer .contact p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+}
+
+#footer .contact a {
+    color: #ff7900;
+    font-weight: bold;
+}
+
+#footer .contact a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
