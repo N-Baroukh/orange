@@ -208,6 +208,27 @@ button:hover {
     }
 }
 
+/* Responsive Design */
+@media only screen and (max-width: 800px) {
+    .container {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .criteria {
+        padding: 10px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .result p {
+        font-size: 16px;
+    }
+}
+
 @media only screen and (max-width: 500px) {
     .container {
         width: 100%;
