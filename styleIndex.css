@@ -256,3 +256,12 @@ img {
     color: #fff;
     text-decoration: underline;
 }
+
+#offre
+{
+    background-color: black;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
