@@ -1,0 +1,105 @@
+/* Styles pour le bouton de retour en haut */
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px; /* Distance du bas */
+    right: 20px; /* Distance de la droite */
+    background-color: orange; /* Couleur de fond bleue */
+    color: black; /* Couleur de la flèche blanche */
+    border-radius: 50%; /* Forme ronde */
+    width: 50px; /* Largeur du bouton */
+    height: 50px; /* Hauteur du bouton */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px; /* Taille de la flèche */
+    text-decoration: none; /* Supprimer le souligné */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Effet de transition */
+}
+
+.scroll-to-top:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Styles globaux */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+/* Navigation */
+nav {
+    background-color: #000; /* Fond noir pour la barre de navigation */
+    border-bottom: 3px solid #ff7900; /* Ligne orange en dessous */
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+nav ul div {
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff; /* Texte blanc */
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+nav ul li a:hover {
+    color: #ff7900; /* Texte en orange au survol */
+}
+
+nav img {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+h1 {
+    color: #2c3e50;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.criteria {
+    margin-bottom: 20px;
+}
+.criteria h2 {
+    margin-bottom: 10px;
+}
+.criteria label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.criteria input[type="radio"] {
+    margin-right: 10px;
+}
+.result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
