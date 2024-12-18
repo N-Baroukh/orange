@@ -55,3 +55,7 @@ function calculerScoreGlobal() {
     document.getElementById('result_global').style.display = 'block';
     document.getElementById('result_global').textContent = `Score global RSE : ${scoreGlobal.toFixed(2)} /100`;
 }
+
+document.querySelector('.navbar-toggler').addEventListener('click', function() {
+    document.querySelector('.navbar-menu').classList.toggle('mobile');
+});

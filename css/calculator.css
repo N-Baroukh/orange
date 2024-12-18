@@ -10,156 +10,6 @@ body {
 /* Navigation */
 .scroll-to-top {
     position: fixed;
-    bottom: 20px; /* Distance du bas */
-    right: 20px; /* Distance de la droite */
-    background-color: orange; /* Couleur de fond bleue */
-    color: black; /* Couleur de la flèche blanche */
-    border-radius: 50%; /* Forme ronde */
-    width: 50px; /* Largeur du bouton */
-    height: 50px; /* Hauteur du bouton */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px; /* Taille de la flèche */
-    text-decoration: none; /* Supprimer le souligné */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre */
-    transition: background-color 0.3s, box-shadow 0.3s; /* Effet de transition */
-
-}
-
-.scroll-to-top:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-
-}
-
-
-/* Navigation */
-nav {
-    background-color: black;
-    padding: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-
-
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-
-}
-
-nav ul img {
-    margin-right: 15px;
-}
-
-nav ul li {
-    margin: 0 15px;
-
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 16px;
-    transition: color 0.3s;
-
-}
-
-nav ul li a:hover {
-    color: #333;
-
-}
-
-
-#calculator
-{
-    padding: 40px;
-    border-top: 4px solid #ff7900;
-    margin-bottom: 20px;
-}
-/* Mise en page du contenu principal */
-.container {
-
-    width: 80%;
-    max-width: 800px; /* Largeur max */
-    margin: 30px auto; /* Centrage horizontal uniquement */
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-}
-
-/* Centrage des boutons */
-button {
-    background-color: #f77f00;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 20px;
-    display: block;
-    margin-left: auto; /* Centrage horizontal */
-    margin-right: auto; /* Centrage horizontal */
-}
-
-button:hover {
-    background-color: #ff8c00;
-}
-
-/* Style pour les sections de critères */
-.criteria {
-    background-color: #f1f1f1;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Centre le texte */
-}
-
-.criteria label {
-    font-size: 16px;
-    margin-bottom: 10px;
-    display: block; /* Chaque label sur une nouvelle ligne */
-}
-
-.criteria input[type="radio"] {
-    margin-right: 10px;
-}
-
-/* Style pour les résultats */
-.result {
-    background-color: #e0f7fa;
-    padding: 15px;
-    margin-top: 20px;
-    border-radius: 5px;
-    display: none;
-    text-align: center; /* Centre le texte */
-}
-
-.result p {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-/* Style pour les messages d'alerte */
-.alert {
-    background-color: #ffcccc;
-    color: #d8000c;
-    padding: 10px;
-    border-radius: 5px;
-    margin-top: 20px;
-    text-align: center; /* Centre le texte */
-}
-
-/* Centrage du bouton "Retour en haut" */
-.scroll-to-top {
-    position: fixed;
     bottom: 20px;
     right: 20px;
     background-color: orange;
@@ -178,33 +28,189 @@ button:hover {
 
 .scroll-to-top:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
 
+/* Style pour la navigation */
+nav {
+    background-color: black;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    justify-content: space-between; /* Espacement entre les éléments */
+}
+
+nav ul img {
+    margin-right: 15px;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #333;
+}
+
+/* Style pour le bouton hamburger (menu mobile) */
+.navbar-toggler {
+    display: none; /* Caché par défaut */
+    background-color: orange;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.navbar-toggler.active {
+    background-color: #333;
+}
+
+.navbar-menu {
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-menu.mobile {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 60px; /* Juste en dessous du menu */
+    left: 0;
+    background-color: black;
+    padding: 10px;
+    border-top: 2px solid #ff7900;
+}
+
+.navbar-menu.mobile li {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.navbar-menu.mobile li a {
+    color: white;
+    font-size: 18px;
+}
+
+/* Calculatrice */
+#calculator {
+    padding: 40px;
+    border-top: 4px solid #ff7900;
+    margin-bottom: 20px;
+}
+
+/* Mise en page du contenu principal */
+.container {
+    width: 80%;
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* Centrage des boutons */
+button {
+    background-color: #f77f00;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button:hover {
+    background-color: #ff8c00;
+}
+
+/* Style pour les sections de critères */
+.criteria {
+    background-color: #f1f1f1;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.criteria label {
+    font-size: 16px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.criteria input[type="radio"] {
+    margin-right: 10px;
+}
+
+/* Style pour les résultats */
+.result {
+    background-color: #e0f7fa;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 5px;
+    display: none;
+    text-align: center;
+}
+
+.result p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Style pour les messages d'alerte */
+.alert {
+    background-color: #ffcccc;
+    color: #d8000c;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center;
 }
 
 /* Responsive Design */
-
 @media only screen and (max-width: 800px) {
-    .container {
-        width: 90%;
-        padding: 10px;
-    }
-
-    button {
-        font-size: 14px;
-        padding: 10px;
-    }
-
     nav ul {
-        flex-direction: column;
-        align-items: flex-start;
+        display: none; /* Masquer le menu horizontal */
+    }
+
+    .navbar-toggler {
+        display: block; /* Afficher le bouton hamburger */
+    }
+
+    .navbar-menu.mobile {
+        display: flex; /* Afficher le menu mobile */
     }
 
     nav ul li {
         margin: 10px 0;
     }
 
-    .criteria label {
+    button {
         font-size: 14px;
+        padding: 10px;
     }
 
     .scroll-to-top {
@@ -237,5 +243,4 @@ button:hover {
         height: 35px;
         font-size: 16px;
     }
-
 }
