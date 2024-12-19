@@ -32,22 +32,28 @@ body {
 
 /* Navigation */
 nav {
-    display: block;
+    display: flex;
+    flex-wrap: wrap; /* Permet de passer en plusieurs lignes si nécessaire */
     background-color: black;
     padding: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    justify-content: space-between;
+    align-items: center;
 }
 
+/* Logo et liens */
 nav ul {
     list-style: none;
     display: flex;
     align-items: center;
     margin: 0;
     padding: 0;
+    flex-wrap: wrap; /* Les éléments passent sur une nouvelle ligne si nécessaire */
 }
 
 nav ul img {
     margin-right: 15px;
+    max-width: 120px; /* Ajustez la taille du logo */
+    height: auto;
 }
 
 nav ul li {
@@ -65,6 +71,33 @@ nav ul li a {
 nav ul li a:hover {
     color: #333;
 }
+
+/* Responsiveness */
+/* Responsiveness */
+/* Responsiveness */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column; /* Empile la navigation */
+        align-items: flex-start; /* Aligne les éléments à gauche */
+    }
+
+    nav ul {
+        flex-direction: column; /* Empile les liens en colonne */
+        width: 100%; /* Prend toute la largeur */
+    }
+
+    nav ul li {
+        margin: 30px 0; /* Augmente encore davantage l'espacement vertical entre les liens */
+    }
+
+    nav ul img {
+        margin: 0 auto 40px; /* Centre le logo et ajoute un espace encore plus large */
+    }
+}
+
+
+
+
 
 /* Section d'accueil */
 #home {
