@@ -16,15 +16,19 @@ function calculerMoyenne(criteriaName) {
 
 document.addEventListener('DOMContentLoaded', function() {
     const calculateButton = document.getElementById('calculateButton');
-    calculateButton.addEventListener('click', function() {
-        calculerMoyennes();
-        // Optionally, you can call updateCharts() here if needed
-    });
+    if (calculateButton) {
+        calculateButton.addEventListener('click', function() {
+            const moyennes = calculerMoyennes();
+            sessionStorage.setItem('moyennes', JSON.stringify(moyennes));
+            // Optionally, you can call updateCharts() here if needed
+        });
+    } else {
+        console.error('calculateButton not found');
+    }
 });
 
 function calculerMoyennes() {
-    const criteres = ['environnement', 'droits_homme', 'gouvernance', 'loyaute_pratiques', 'client_consommateur', 'relations_travail', 'territoire_interet_local'];
-    const moyennes = {};
+    const criteres = ["impact", "conditions", "loyaute", "gouvernance", "clients", "relations", "territoire"];    const moyennes = {};
 
     criteres.forEach(critere => {
         const inputs = document.querySelectorAll(`input[name^="${critere}"]:checked`);
@@ -39,26 +43,24 @@ function calculerMoyennes() {
 }
 // Fonction pour calculer le score par critère
 function calculerScoreParCritere(critere) {
-    // Sélectionner tous les boutons radio pour ce critère
     const radios = document.querySelectorAll(`#${critere} input[type="radio"]:checked`);
-
-    // Déterminer le nombre total de questions dans ce critère (nombre de boutons radio par question)
-    const totalQuestions = document.querySelectorAll(`#${critere} input[type="radio"]`).length / 2; // 2 options (Oui/Non) par question
+    const totalQuestions = document.querySelectorAll(`#${critere} input[type="radio"]`).length / 2;
     let score = 0;
 
-    // Parcourir les radios sélectionnées et compter le nombre de "Oui"
     radios.forEach(radio => {
         if (radio.value === "1") {
-            score += 1;  // Ajoute 1 pour chaque réponse "Oui"
+            score += 1;
         }
     });
 
-    // Calculer le score en pourcentage
     const scorePercentage = (score / totalQuestions) * 100;
-
-    // Afficher le résultat
     document.getElementById(`result_${critere}`).style.display = 'block';
     document.getElementById(`result_${critere}`).textContent = `${critere.charAt(0).toUpperCase() + critere.slice(1)} : ${scorePercentage.toFixed(2)}/100`;
+
+    // Store the result in sessionStorage
+    const moyennes = JSON.parse(sessionStorage.getItem('moyennes')) || {};
+    moyennes[critere] = scorePercentage;
+    sessionStorage.setItem('moyennes', JSON.stringify(moyennes));
 }
 
 // Fonction pour calculer le score global
@@ -66,8 +68,7 @@ function calculerScoreGlobal() {
     let scoreTotal = 0;
     let count = 0;
 
-    const criteres = ["impact", "conditions", "engagement", "gouvernance", "clients", "fournisseurs", "communautes", "ethique"];
-
+    const criteres = ["impact", "conditions", "loyaute", "gouvernance", "clients", "relations", "territoire"];
     for (const critere of criteres) {
         const moyenne = calculerMoyenne(critere);
         scoreTotal += moyenne * 100;  // Pondération du critère

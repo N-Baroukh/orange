@@ -92,20 +92,19 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     function updateCharts() {
-        // Retrieve the data from sessionStorage
         const moyennes = JSON.parse(sessionStorage.getItem('moyennes')) || {};
         const data = [
-            {label: 'Environnement', value: moyennes.environnement || 0, color: '#4CAF50'},
-            {label: 'Droits de l\'Homme', value: moyennes.droits_homme || 0, color: '#F44336'},
+            {label: 'Environnement', value: moyennes.impact || 0, color: '#4CAF50'},
+            {label: 'Droits de l\'Homme', value: moyennes.conditions || 0, color: '#F44336'},
             {label: 'Gouvernance', value: moyennes.gouvernance || 0, color: '#FFEB3B'},
-            {label: 'Loyauté des pratiques', value: moyennes.loyaute_pratiques || 0, color: '#9C27B0'},
-            {label: 'Client/Consommateur', value: moyennes.client_consommateur || 0, color: '#B0BEC5'},
-            {label: 'Relations et conditions de travail', value: moyennes.relations_travail || 0, color: '#1E88E5'},
-            {label: 'Territoire et intérêt local', value: moyennes.territoire_interet_local || 0, color: '#81D4FA'}
+            {label: 'Loyauté des pratiques', value: moyennes.loyaute || 0, color: '#9C27B0'},
+            {label: 'Client/Consommateur', value: moyennes.clients || 0, color: '#B0BEC5'},
+            {label: 'Relations et conditions de travail', value: moyennes.relations || 0, color: '#1E88E5'},
+            {label: 'Territoire et intérêt local', value: moyennes.territoire || 0, color: '#81D4FA'}
         ];
 
         const chartsContainer = document.getElementById('chartsContainer');
-        chartsContainer.innerHTML = ''; // Clear existing charts
+        chartsContainer.innerHTML = '';
 
         data.forEach((item, index) => {
             const chartWrapper = document.createElement('div');
@@ -176,21 +175,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const average = data.reduce((sum, item) => sum + item.value, 0) / data.length;
 
-        // Change the color of the output div based on the average percentage
         const outputDiv = document.getElementById('output');
         if (average < 24) {
-            outputDiv.style.backgroundColor = '#FF0000'; // Red
+            outputDiv.style.backgroundColor = '#FF0000';
         } else if (average < 44) {
-            outputDiv.style.backgroundColor = '#FFA500'; // Orange
+            outputDiv.style.backgroundColor = '#FFA500';
         } else if (average < 64) {
-            outputDiv.style.backgroundColor = '#41f012'; // Light Green
+            outputDiv.style.backgroundColor = '#41f012';
         } else if (average < 80) {
-            outputDiv.style.backgroundColor = '#008000'; // Green
+            outputDiv.style.backgroundColor = '#008000';
         } else {
-            outputDiv.style.backgroundColor = '#004d00'; // Dark Green
+            outputDiv.style.backgroundColor = '#004d00';
         }
 
-        // Create the gauge chart for the average score
         const gaugeChartCanvas = document.getElementById('gaugeChart');
         const label = getLabelBasedOnScore(average);
 
@@ -201,12 +198,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 datasets: [{
                     data: [average, 100 - average],
                     backgroundColor: [
-                        average < 24 ? '#FF0000' : average < 44 ? '#FFA500' : average < 64 ? '#41f012' : average < 80 ? '#008000' : '#004d00', // Color based on score
-                        '#E0E0E0' // Grey for remaining part
+                        average < 24 ? '#FF0000' : average < 44 ? '#FFA500' : average < 64 ? '#41f012' : average < 80 ? '#008000' : '#004d00',
+                        '#E0E0E0'
                     ],
                     borderColor: '#000',
                     borderWidth: 1,
-                    cutout: '70%' // Adds space in the center for the gauge effect
+                    cutout: '70%'
                 }]
             },
             options: {
@@ -214,8 +211,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 maintainAspectRatio: true,
                 width: 200,
                 height: 100,
-                rotation: -90, // Start at 12 o'clock
-                circumference: 180, // Show only half of the circle
+                rotation: -90,
+                circumference: 180,
                 plugins: {
                     legend: {
                         display: false
@@ -248,20 +245,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     ctx.fillStyle = average < 24 ? '#FF0000' : average < 44 ? '#FFA500' : average < 64 ? '#41f012' : average < 80 ? '#008000' : '#004d00';
                     ctx.save();
 
-                    // Calculate the angle for the cursor position
                     const angle = (average / 100) * Math.PI - Math.PI / 2;
                     const x = width / 2 + (chart.innerRadius + 10) * Math.cos(angle);
                     const y = chart.height / 1.5 + (chart.innerRadius + 10) * Math.sin(angle);
 
-                    // Draw the cursor line
                     ctx.beginPath();
                     ctx.moveTo(width / 2, chart.height / 1.5);
                     ctx.lineTo(x, y);
                     ctx.lineWidth = 3;
-                    ctx.strokeStyle = '#FF5733'; // Cursor color
+                    ctx.strokeStyle = '#FF5733';
                     ctx.stroke();
 
-                    // Draw a small arrow at the end of the cursor line
                     ctx.beginPath();
                     ctx.moveTo(x, y);
                     ctx.lineTo(x - 5, y - 5);
