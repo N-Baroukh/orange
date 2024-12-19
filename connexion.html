@@ -12,7 +12,7 @@
             align-items: flex-start;
             gap: 20px;
             padding: 20px;
-            flex-wrap: wrap; /* Permet aux graphiques de passer à la ligne si nécessaire */
+            flex-wrap: wrap;
         }
 
         .chart-wrapper {
@@ -41,17 +41,16 @@
             text-align: center;
             font-size: 2em;
             font-weight: bold;
-            margin-bottom: 0; /* Remove bottom margin */
-            padding-bottom: 0; /* Ensure no padding */
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
 
         #gaugeContainer {
             text-align: center;
-            margin-top: -10px; /* Use negative margin if necessary */
-            padding-top: 0; /* Ensure no padding */
+            margin-top: -10px;
+            padding-top: 0;
         }
-        #img
-        {
+        #img {
             width: 350px;
             margin-right: 20px;
         }
@@ -61,17 +60,18 @@
 <nav>
     <ul style="display: flex; justify-content: space-between; width: 100%; margin-top: 20px; align-items: center;">
         <div style="display: flex; align-items: center;">
-           <a href="index.html"><img alt="orange"  id="img" src="img/logo%20Act%20%204%20change.webp"></a>
-               <li><a href="index.html">Accueil</a></li>
+            <img alt="orange" src="img/logoAct4change.webp" style="width: 160px; margin-right: 20px;">
+            <li><a href="index.html">Accueil</a></li>
             <li><a href="expertise.html">Expertise</a></li>
             <li><a href="calculator.html">Calculez son RSE</a></li>
         </div>
         <li style="display: flex; align-items: center;">
             <img src="img/avatar.png" alt="connexion" style="width: 25px; margin-right: 5px;">
-            <a href="connexion.html">Mon compte</a></li>
+            <a href="connexion.html">Mon compte</a>
+        </li>
     </ul>
 </nav>
-<section id="bande">
+<section id="home">
     <div style="text-align: center; color: orange;">
         <h1>Bienvenue X</h1>
     </div>
@@ -88,56 +88,140 @@
 </section>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="js/calculator.js"></script>
+
 <script>
-    const data = [
-        {label: 'Environnement', value: 80, color: '#4CAF50'}, // Vert
-        {label: 'Droits de l’Homme', value: 50, color: '#FF0000'}, // Rouge
-        {label: 'Gouvernance', value: 75, color: '#FFEB3B'}, // Jaune
-        {label: 'Loyauté des pratiques', value: 45, color: '#9C27B0'}, // Violet
-        {label: 'Client/Consommateur', value: 80, color: '#B0BEC5'}, // Gris
-        {label: 'Relations et conditions de travail', value: 50, color: '#1E88E5'}, // Bleu foncé
-        {label: 'Territoire et intérêt local', value: 50, color: '#81D4FA'} // Bleu ciel
-    ];
+document.addEventListener('DOMContentLoaded', function() {
+    function updateCharts() {
+        // Retrieve the data from sessionStorage
+        const moyennes = JSON.parse(sessionStorage.getItem('moyennes')) || {};
+        const data = [
+            {label: 'Environnement', value: moyennes.environnement || 0, color: '#4CAF50'},
+            {label: 'Droits de l\'Homme', value: moyennes.droits_homme || 0, color: '#F44336'},
+            {label: 'Gouvernance', value: moyennes.gouvernance || 0, color: '#FFEB3B'},
+            {label: 'Loyauté des pratiques', value: moyennes.loyaute_pratiques || 0, color: '#9C27B0'},
+            {label: 'Client/Consommateur', value: moyennes.client_consommateur || 0, color: '#B0BEC5'},
+            {label: 'Relations et conditions de travail', value: moyennes.relations_travail || 0, color: '#1E88E5'},
+            {label: 'Territoire et intérêt local', value: moyennes.territoire_interet_local || 0, color: '#81D4FA'}
+        ];
 
-    const chartsContainer = document.getElementById('chartsContainer');
+        const chartsContainer = document.getElementById('chartsContainer');
+        chartsContainer.innerHTML = ''; // Clear existing charts
 
-    data.forEach((item, index) => {
-        // Crée un conteneur pour chaque graphique
-        const chartWrapper = document.createElement('div');
-        chartWrapper.classList.add('chart-wrapper');
-        chartsContainer.appendChild(chartWrapper);
+        data.forEach((item, index) => {
+            const chartWrapper = document.createElement('div');
+            chartWrapper.classList.add('chart-wrapper');
+            chartsContainer.appendChild(chartWrapper);
 
-        // Ajoute un titre pour chaque critère
-        const chartTitle = document.createElement('div');
-        chartTitle.textContent = item.label;
-        chartTitle.classList.add('chart-title');
-        chartWrapper.appendChild(chartTitle);
+            const chartTitle = document.createElement('div');
+            chartTitle.textContent = item.label;
+            chartTitle.classList.add('chart-title');
+            chartWrapper.appendChild(chartTitle);
 
-        // Ajoute un canvas pour le graphique
-        const canvas = document.createElement('canvas');
-        canvas.id = `rseChart${index}`;
-        chartWrapper.appendChild(canvas);
+            const canvas = document.createElement('canvas');
+            canvas.id = `rseChart${index}`;
+            chartWrapper.appendChild(canvas);
 
-        // Initialise le graphique
-        new Chart(canvas, {
+            new Chart(canvas, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Acquis', 'Non acquis'],
+                    datasets: [{
+                        data: [item.value, 100 - item.value],
+                        backgroundColor: [item.color, '#E0E0E0'],
+                        hoverBackgroundColor: [item.color, '#E0E0E0']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: false
+                        },
+                        datalabels: {
+                            color: '#000',
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            },
+                            formatter: (value, ctx) => {
+                                const dataIndex = ctx.dataIndex;
+                                return dataIndex === 0 ? `${value}%` : '';
+                            }
+                        }
+                    }
+                },
+                plugins: [{
+                    id: 'centerText',
+                    beforeDraw: function (chart) {
+                        const {width} = chart;
+                        const {ctx} = chart;
+                        const text = `${chart.data.datasets[0].data[0]}%`;
+                        ctx.restore();
+                        ctx.font = '16px Arial';
+                        ctx.textBaseline = 'middle';
+                        ctx.textAlign = 'center';
+                        ctx.fillStyle = '#000';
+                        ctx.fillText(text, width / 2, chart.height / 2);
+                        ctx.save();
+                    }
+                }]
+            });
+        });
+
+        document.getElementById('output').innerHTML = "Votre score RSE est de " + Math.ceil(data.reduce((sum, item) => sum + item.value, 0) / data.length) + "%";
+
+        const average = data.reduce((sum, item) => sum + item.value, 0) / data.length;
+
+        // Change the color of the output div based on the average percentage
+        const outputDiv = document.getElementById('output');
+        if (average < 24) {
+            outputDiv.style.backgroundColor = '#FF0000'; // Red
+        } else if (average < 44) {
+            outputDiv.style.backgroundColor = '#FFA500'; // Orange
+        } else if (average < 64) {
+            outputDiv.style.backgroundColor = '#41f012'; // Light Green
+        } else if (average < 80) {
+            outputDiv.style.backgroundColor = '#008000'; // Green
+        } else {
+            outputDiv.style.backgroundColor = '#004d00'; // Dark Green
+        }
+
+        // Create the gauge chart for the average score
+        const gaugeChartCanvas = document.getElementById('gaugeChart');
+        const label = getLabelBasedOnScore(average);
+
+        const gaugeChart = new Chart(gaugeChartCanvas, {
             type: 'doughnut',
             data: {
-                labels: ['Acquis', 'Non acquis'],
+                labels: [label, 'Manquant'],
                 datasets: [{
-                    data: [item.value, 100 - item.value],
-                    backgroundColor: [item.color, '#E0E0E0'], // Couleurs spécifiques et gris
-                    hoverBackgroundColor: [item.color, '#E0E0E0']
+                    data: [average, 100 - average],
+                    backgroundColor: [
+                        average < 24 ? '#FF0000' : average < 44 ? '#FFA500' : average < 64 ? '#41f012' : average < 80 ? '#008000' : '#004d00', // Color based on score
+                        '#E0E0E0' // Grey for remaining part
+                    ],
+                    borderColor: '#000',
+                    borderWidth: 1,
+                    cutout: '70%' // Adds space in the center for the gauge effect
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: true,
+                width: 200,
+                height: 100,
+                rotation: -90, // Start at 12 o'clock
+                circumference: 180, // Show only half of the circle
                 plugins: {
                     legend: {
-                        display: false // Masque la légende pour simplifier
+                        display: false
                     },
                     tooltip: {
-                        enabled: false // Désactive les info-bulles
+                        enabled: true
                     },
                     datalabels: {
                         color: '#000',
@@ -147,7 +231,7 @@
                         },
                         formatter: (value, ctx) => {
                             const dataIndex = ctx.dataIndex;
-                            return dataIndex === 0 ? `${value}%` : ''; // Affiche uniquement le % acquis
+                            return dataIndex === 0 ? `${value}%` : '';
                         }
                     }
                 }
@@ -157,39 +241,40 @@
                 beforeDraw: function (chart) {
                     const {width} = chart;
                     const {ctx} = chart;
-                    const text = `${chart.data.datasets[0].data[0]}%`;
                     ctx.restore();
                     ctx.font = '16px Arial';
                     ctx.textBaseline = 'middle';
                     ctx.textAlign = 'center';
-                    ctx.fillStyle = '#000';
-                    ctx.fillText(text, width / 2, chart.height / 2);
+                    ctx.fillStyle = average < 24 ? '#FF0000' : average < 44 ? '#FFA500' : average < 64 ? '#41f012' : average < 80 ? '#008000' : '#004d00';
                     ctx.save();
+
+                    // Calculate the angle for the cursor position
+                    const angle = (average / 100) * Math.PI - Math.PI / 2;
+                    const x = width / 2 + (chart.innerRadius + 10) * Math.cos(angle);
+                    const y = chart.height / 1.5 + (chart.innerRadius + 10) * Math.sin(angle);
+
+                    // Draw the cursor line
+                    ctx.beginPath();
+                    ctx.moveTo(width / 2, chart.height / 1.5);
+                    ctx.lineTo(x, y);
+                    ctx.lineWidth = 3;
+                    ctx.strokeStyle = '#FF5733'; // Cursor color
+                    ctx.stroke();
+
+                    // Draw a small arrow at the end of the cursor line
+                    ctx.beginPath();
+                    ctx.moveTo(x, y);
+                    ctx.lineTo(x - 5, y - 5);
+                    ctx.moveTo(x, y);
+                    ctx.lineTo(x + 5, y - 5);
+                    ctx.strokeStyle = '#FF5733';
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                    ctx.closePath();
                 }
             }]
         });
-    });
-
-    document.getElementById('output').innerHTML = "Votre score RSE est de " + Math.ceil(data.reduce((sum, item) => sum + item.value, 0) / data.length) + "%";
-    const average = data.reduce((sum, item) => sum + item.value, 0) / data.length;
-
-    // Change the color of the output div based on the average percentage
-    const outputDiv = document.getElementById('output');
-    if (average < 24) {
-        outputDiv.style.backgroundColor = '#FF0000'; // Red
-    } else if (average < 44) {
-        outputDiv.style.backgroundColor = '#FFA500'; // Orange
-    } else if (average < 64) {
-        outputDiv.style.backgroundColor = '#41f012'; // Light Green
-    } else if (average < 80) {
-        outputDiv.style.backgroundColor = '#008000'; // Green
-    } else {
-        outputDiv.style.backgroundColor = '#004d00'; // Dark Green
-    }// Crée le graphique du baromètre pour la moyenne avec une jauge
-    const gaugeChartCanvas = document.getElementById('gaugeChart');
-    const averageDisplay = document.createElement('div');
-    averageDisplay.style.textAlign = 'center';
-    document.body.appendChild(averageDisplay);
+    }
 
     function getLabelBasedOnScore(score) {
         if (score < 24) {
@@ -203,86 +288,8 @@
         }
     }
 
-    const label = getLabelBasedOnScore(average);
-
-    const gaugeChart = new Chart(gaugeChartCanvas, {
-        type: 'doughnut',
-        data: {
-            labels: [label, 'Manquant'],
-            datasets: [{
-                data: [average, 100 - average],
-                backgroundColor: [
-                    average < 24 ? '#FF0000' : average < 44 ? '#FFA500' : average < 64 ? '#41f012' : average < 80 ? '#008000' : '#004d00', // Color based on score
-                    '#E0E0E0' // Grey for remaining part
-                ],
-                borderColor: '#000',
-                borderWidth: 1,
-                cutout: '70%' // Adds space in the center for the gauge effect
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            rotation: -90, // Commence à 12 heures
-            circumference: 180, // Affiche seulement la moitié du cercle
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    enabled: true
-                },
-                datalabels: {
-                    color: '#000',
-                    font: {
-                        size: 16,
-                        weight: 'bold'
-                    },
-                    formatter: (value, ctx) => {
-                        const dataIndex = ctx.dataIndex;
-                        return dataIndex === 0 ? `${value}%` : '';
-                    }
-                }
-            }
-        },
-        plugins: [{
-            id: 'centerText',
-            beforeDraw: function (chart) {
-                const {width} = chart;
-                const {ctx} = chart;
-                ctx.restore();
-                ctx.font = '16px Arial';
-                ctx.textBaseline = 'middle';
-                ctx.textAlign = 'center';
-                ctx.fillStyle = average < 24 ? '#FF0000' : average < 44 ? '#FFA500' : average < 64 ? '#41f012' : average < 80 ? '#008000' : '#004d00';
-                ctx.save();
-
-                // Calculate the angle for the cursor position
-                const angle = (average / 100) * Math.PI - Math.PI / 2;
-                const x = width / 2 + (chart.innerRadius + 10) * Math.cos(angle);
-                const y = chart.height / 1.5 + (chart.innerRadius + 10) * Math.sin(angle);
-
-                // Draw the cursor line
-                ctx.beginPath();
-                ctx.moveTo(width / 2, chart.height / 1.5);
-                ctx.lineTo(x, y);
-                ctx.lineWidth = 3;
-                ctx.strokeStyle = '#FF5733'; // Cursor color
-                ctx.stroke();
-
-                // Draw a small arrow at the end of the cursor line
-                ctx.beginPath();
-                ctx.moveTo(x, y);
-                ctx.lineTo(x - 5, y - 5);
-                ctx.moveTo(x, y);
-                ctx.lineTo(x + 5, y - 5);
-                ctx.strokeStyle = '#FF5733';
-                ctx.lineWidth = 2;
-                ctx.stroke();
-                ctx.closePath();
-            }
-        }]
-    });
+    updateCharts();
+});
 </script>
 </body>
 </html>

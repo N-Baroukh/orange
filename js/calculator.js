@@ -14,6 +14,29 @@ function calculerMoyenne(criteriaName) {
     return count > 0 ? total / count : 0;  // Si aucune réponse n'est sélectionnée, on retourne 0
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    const calculateButton = document.getElementById('calculateButton');
+    calculateButton.addEventListener('click', function() {
+        calculerMoyennes();
+        // Optionally, you can call updateCharts() here if needed
+    });
+});
+
+function calculerMoyennes() {
+    const criteres = ['environnement', 'droits_homme', 'gouvernance', 'loyaute_pratiques', 'client_consommateur', 'relations_travail', 'territoire_interet_local'];
+    const moyennes = {};
+
+    criteres.forEach(critere => {
+        const inputs = document.querySelectorAll(`input[name^="${critere}"]:checked`);
+        const total = Array.from(inputs).reduce((sum, input) => sum + parseInt(input.value), 0);
+        moyennes[critere] = inputs.length > 0 ? (total / inputs.length) * 100 : 0; // Convert to percentage
+    });
+
+    // Save the data to sessionStorage
+    sessionStorage.setItem('moyennes', JSON.stringify(moyennes));
+
+    return moyennes;
+}
 // Fonction pour calculer le score par critère
 function calculerScoreParCritere(critere) {
     // Sélectionner tous les boutons radio pour ce critère
@@ -43,7 +66,7 @@ function calculerScoreGlobal() {
     let scoreTotal = 0;
     let count = 0;
 
-    const criteres = ["impact", "conditions", "engagement", "gouvernance", "relations", "fournisseurs", "communautes", "ethique"];
+    const criteres = ["impact", "conditions", "engagement", "gouvernance", "clients", "fournisseurs", "communautes", "ethique"];
 
     for (const critere of criteres) {
         const moyenne = calculerMoyenne(critere);
@@ -56,6 +79,6 @@ function calculerScoreGlobal() {
     document.getElementById('result_global').textContent = `Score global RSE : ${scoreGlobal.toFixed(2)} /100`;
 }
 
-document.querySelector('.navbar-toggler').addEventListener('click', function() {
-    document.querySelector('.navbar-menu').classList.toggle('mobile');
+document.addEventListener('DOMContentLoaded', function() {
+    // Add your event listeners or other initialization code here
 });
