@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Graphiques RSE</title>
+    <link rel="icon" href="img/logoAct4change.webp">
     <link href="styleIndex.css" rel="stylesheet">
     <style>
         #chartsContainer {
@@ -94,13 +95,13 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateCharts() {
         const moyennes = JSON.parse(sessionStorage.getItem('moyennes')) || {};
         const data = [
-            {label: 'Environnement', value: moyennes.impact || 0, color: '#4CAF50'},
-            {label: 'Droits de l\'Homme', value: moyennes.conditions || 0, color: '#F44336'},
-            {label: 'Gouvernance', value: moyennes.gouvernance || 0, color: '#FFEB3B'},
-            {label: 'Loyauté des pratiques', value: moyennes.loyaute || 0, color: '#9C27B0'},
-            {label: 'Client/Consommateur', value: moyennes.clients || 0, color: '#B0BEC5'},
-            {label: 'Relations et conditions de travail', value: moyennes.relations || 0, color: '#1E88E5'},
-            {label: 'Territoire et intérêt local', value: moyennes.territoire || 0, color: '#81D4FA'}
+            {label: 'Environnement', value: moyennes.impact ? moyennes.impact.toFixed(1) : 0, color: '#4CAF50'},
+            {label: 'Droits de l\'Homme', value: moyennes.conditions ? moyennes.conditions.toFixed(1) : 0, color: '#F44336'},
+            {label: 'Gouvernance', value: moyennes.gouvernance ? moyennes.gouvernance.toFixed(1) : 0, color: '#FFEB3B'},
+            {label: 'Loyauté des pratiques', value: moyennes.loyaute ? moyennes.loyaute.toFixed(1) : 0, color: '#9C27B0'},
+            {label: 'Client/Consommateur', value: moyennes.clients ? moyennes.clients.toFixed(1) : 0, color: '#B0BEC5'},
+            {label: 'Relations et conditions de travail', value: moyennes.relations ? moyennes.relations.toFixed(1) : 0, color: '#1E88E5'},
+            {label: 'Territoire et intérêt local', value: moyennes.territoire ? moyennes.territoire.toFixed(1) : 0, color: '#81D4FA'}
         ];
 
         const chartsContainer = document.getElementById('chartsContainer');
@@ -125,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 data: {
                     labels: ['Acquis', 'Non acquis'],
                     datasets: [{
-                        data: [item.value, 100 - item.value],
+                        data: [item.value, (100 - item.value).toFixed(1)],
                         backgroundColor: [item.color, '#E0E0E0'],
                         hoverBackgroundColor: [item.color, '#E0E0E0']
                     }]
@@ -171,9 +172,9 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        document.getElementById('output').innerHTML = "Votre score RSE est de " + Math.ceil(data.reduce((sum, item) => sum + item.value, 0) / data.length) + "%";
+        document.getElementById('output').innerHTML = "Votre score RSE est de " + Math.ceil(data.reduce((sum, item) => sum + parseFloat(item.value), 0) / data.length) + "%";
 
-        const average = data.reduce((sum, item) => sum + item.value, 0) / data.length;
+        const average = data.reduce((sum, item) => sum + parseFloat(item.value), 0) / data.length;
 
         const outputDiv = document.getElementById('output');
         if (average < 24) {
@@ -196,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
             data: {
                 labels: [label, 'Manquant'],
                 datasets: [{
-                    data: [average, 100 - average],
+                    data: [average.toFixed(1), (100 - average).toFixed(1)],
                     backgroundColor: [
                         average < 24 ? '#FF0000' : average < 44 ? '#FFA500' : average < 64 ? '#41f012' : average < 80 ? '#008000' : '#004d00',
                         '#E0E0E0'
