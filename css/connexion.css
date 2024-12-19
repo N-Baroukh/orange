@@ -1,0 +1,112 @@
+#chartsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.chart-wrapper {
+    width: 150px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.chart-title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+#output {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+#gaugeContainer {
+    text-align: center;
+    margin-top: -10px;
+    padding-top: 0;
+}
+#img {
+    width: 350px;
+    margin-right: 20px;
+}
+/* Navigation styles */
+
+
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand img {
+    max-width: 100%;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.nav-account {
+    display: flex;
+    align-items: center;
+}
+
+.nav-toggle {
+    display: none;
+    font-size: 1.5em;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: #fff;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 10px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+}
