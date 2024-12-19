@@ -35,35 +35,39 @@
             <h2>Calcul par critère</h2>
 
             <div class="criteria" id="impact">
-                <h3>Impact environnemental</h3>
-                <label>Réduisez-vous les émissions de CO₂ ?</label>
+                <h3>Environnement</h3>
+                <label>L'entreprise met-elle en œuvre des actions pour réduire son empreinte carbone ?</label>
                 <input type="radio" name="impact_co2" value="1"> Oui
                 <input type="radio" name="impact_co2" value="0"> Non
                 <br>
                 <label>Si oui : Quels sont vos principaux leviers (exemple : énergie renouvelable, réduction des déplacements) ?</label>
                 <input type="text" name="impact_leviers" placeholder="Réponse">
                 <br>
-                <label>Gérez-vous efficacement vos déchets ?</label>
+                <label>Des initiatives sont-elles prises pour limiter la consommation d’eau et d’énergie ?</label>
                 <input type="radio" name="impact_dechets" value="1"> Oui
                 <input type="radio" name="impact_dechets" value="0"> Non
+                <br>
+                <label>L’entreprise favorise-t-elle l’utilisation de matériaux recyclés ou durables ?</label>
+                <input type="radio" name="impact_materiaux" value="1"> Oui
+                <input type="radio" name="impact_materiaux" value="0"> Non
                 <br>
                 <label>Si oui : Incluez-vous des pratiques de recyclage ou d’économie circulaire ?</label>
                 <input type="text" name="impact_recyclage" placeholder="Réponse">
             </div>
 
-            <button onclick="calculerScoreParCritere('impact')">Calculer Impact Environnemental</button>
+            <button onclick="calculerScoreParCritere('impact')">Calculer Environnement</button>
             <div id="result_impact" class="result" style="display: none;"></div>
 
             <div class="criteria" id="conditions">
-                <h3>Conditions de travail</h3>
-                <label>Votre entreprise favorise-t-elle la diversité et l’inclusion ?</label>
+                <h3>Droits de l’Homme </h3>
+                <label>L’entreprise garantit-elle le respect des droits fondamentaux de ses employés ?</label>
                 <input type="radio" name="conditions_diversite" value="1"> Oui
                 <input type="radio" name="conditions_diversite" value="0"> Non
                 <br>
                 <label>Si oui : Quels axes prioritaires (recrutement, égalité salariale, accessibilité) ?</label>
                 <input type="text" name="conditions_axes" placeholder="Réponse">
                 <br>
-                <label>Proposez-vous des formations régulières à vos employés ?</label>
+                <label>Des audits réguliers sont-ils effectués pour vérifier les conditions de travail chez les fournisseurs ?</label>
                 <input type="radio" name="conditions_formation" value="1"> Oui
                 <input type="radio" name="conditions_formation" value="0"> Non
                 <br>
@@ -71,34 +75,42 @@
                 <input type="text" name="conditions_formations" placeholder="Réponse">
             </div>
 
-            <button onclick="calculerScoreParCritere('conditions')">Calculer Conditions de Travail</button>
+            <button onclick="calculerScoreParCritere('conditions')">Calculer Droits de l’Homme </button>
             <div id="result_conditions" class="result" style="display: none;"></div>
 
-            <div class="criteria" id="engagement">
-                <h3>Engagement sociétal</h3>
-                <label>Votre entreprise est-elle impliquée auprès d’association, d'artisans ou de commerces locaux ?</label>
-                <input type="radio" name="engagement_local" value="1"> Oui
-                <input type="radio" name="engagement_local" value="0"> Non
+            <div class="criteria" id="loyaute">
+                <h3>Loyauté des pratiques</h3>
+                <label>Les relations avec les partenaires et fournisseurs sont-elles basées sur l’équité et la transparence ?</label>
+                <input type="radio" name="engagement_partenaires" value="1"> Oui
+                <input type="radio" name="engagement_partenaires" value="0"> Non
                 <br>
                 <label>Si oui : Décrivez les initiatives principales.</label>
                 <input type="text" name="engagement_initiatives" placeholder="Réponse">
+                <br>
+                <label>Les pratiques publicitaires respectent-elles l’éthique et ne sont-elles pas trompeuses ?</label>
+                <input type="radio" name="engagement_publicite" value="1"> Oui
+                <input type="radio" name="engagement_publicite" value="0"> Non
             </div>
 
-            <button onclick="calculerScoreParCritere('engagement')">Calculer Engagement Sociétal</button>
-            <div id="result_engagement" class="result" style="display: none;"></div>
+            <button onclick="calculerScoreParCritere('loyaute')">Calculer Loyauté des pratiques</button>
+            <div id="result_loyaute" class="result" style="display: none;"></div>
 
             <div class="criteria" id="gouvernance">
                 <h3>Gouvernance</h3>
-                <label>Communiquez-vous de manière transparente sur vos actions ?</label>
+                <label>Les décisions stratégiques sont-elles prises de manière transparente ?</label>
                 <input type="radio" name="gouvernance_transparence" value="1"> Oui
                 <input type="radio" name="gouvernance_transparence" value="0"> Non
                 <br>
                 <label>Si oui : Quels canaux de communication utilisez-vous ?</label>
                 <input type="text" name="gouvernance_canaux" placeholder="Réponse">
                 <br>
-                <label>Votre entreprise a-t-elle une politique de conformité claire ?</label>
+                <label>Existe-t-il des mécanismes pour prévenir les conflits d'intérêts au sein de l'organisation ?</label>
                 <input type="radio" name="gouvernance_conformite" value="1"> Oui
                 <input type="radio" name="gouvernance_conformite" value="0"> Non
+                <br>
+                <label>L’entreprise dispose-t-elle d’un code de conduite clair et respecté par tous ?</label>
+                <input type="radio" name="gouvernance_code" value="1"> Oui
+                <input type="radio" name="gouvernance_code" value="0"> Non
                 <br>
                 <label>Si oui : Quels outils garantissent sa mise en œuvre ?</label>
                 <input type="text" name="gouvernance_outils" placeholder="Réponse">
@@ -108,94 +120,71 @@
             <div id="result_gouvernance" class="result" style="display: none;"></div>
 
             <div class="criteria" id="clients">
-                <h3>Relations avec les clients</h3>
-                <label>Proposez-vous des produits/services durables ?</label>
-                <input type="radio" name="clients_durables" value="1"> Oui
-                <input type="radio" name="clients_durables" value="0"> Non
+                <h3>Client/Consommateur</h3>
+                <label>L’entreprise s’assure-t-elle de la sécurité et de la qualité de ses produits ou services ?</label>
+                <input type="radio" name="clients_securite" value="1"> Oui
+                <input type="radio" name="clients_securite" value="0"> Non
                 <br>
                 <label>Si oui : Quels critères définissent leur durabilité ?</label>
                 <input type="text" name="clients_criteres" placeholder="Réponse">
                 <br>
-                <label>Écoutez-vous activement les retours de vos clients ?</label>
-                <input type="radio" name="clients_retours" value="1"> Oui
-                <input type="radio" name="clients_retours" value="0"> Non
+                <label>Des mécanismes sont-ils en place pour gérer efficacement les plaintes des clients ?</label>
+                <input type="radio" name="clients_gestion" value="1"> Oui
+                <input type="radio" name="clients_gestion" value="0"> Non
                 <br>
                 <label>Si oui : Quels changements en découlent ?</label>
                 <input type="text" name="clients_changements" placeholder="Réponse">
+                <br>
+                <label>Les clients sont-ils informés de manière claire et transparente sur les produits/services offerts ?</label>
+                <input type="radio" name="clients_transparence" value="1"> Oui
+                <input type="radio" name="clients_transparence" value="0"> Non
             </div>
 
-            <button onclick="calculerScoreParCritere('clients')">Calculer Relations avec les Clients</button>
+            <button onclick="calculerScoreParCritere('clients')">Calculer Client/Consommateur</button>
             <div id="result_clients" class="result" style="display: none;"></div>
 
-            <div class="criteria" id="fournisseurs">
-                <h3>Relations avec les fournisseurs</h3>
-                <label>Respectez-vous les critères sociaux et environnementaux avec vos fournisseurs ?</label>
-                <input type="radio" name="fournisseurs_respect" value="1"> Oui
-                <input type="radio" name="fournisseurs_respect" value="0"> Non
+            <div class="criteria" id="relations">
+                <h3>Relations et conditions de travail</h3>
+                <label>L’entreprise garantit-elle un environnement de travail sûr et sain pour ses employés ?</label>
+                <input type="radio" name="relations_securite" value="1"> Oui
+                <input type="radio" name="relations_securite" value="0"> Non
                 <br>
                 <label>Si oui : Quels critères clés appliquez-vous ?</label>
-                <input type="text" name="fournisseurs_criteres" placeholder="Réponse">
+                <input type="text" name="relations-securite" placeholder="Réponse">
                 <br>
-                <label>Évaluez-vous régulièrement la performance de vos fournisseurs ?</label>
-                <input type="radio" name="fournisseurs_evaluation" value="1"> Oui
-                <input type="radio" name="fournisseurs_evaluation" value="0"> Non
+                <label>Des opportunités de formation et de développement professionnel sont-elles offertes aux employés ?</label>
+                <input type="radio" name="relations_formation" value="1"> Oui
+                <input type="radio" name="relations_formation" value="0"> Non
                 <br>
                 <label>Si oui : Quels outils ou indicateurs utilisez-vous ?</label>
-                <input type="text" name="fournisseurs_indicateurs" placeholder="Réponse">
+                <input type="text" name="relation_formation" placeholder="Réponse">
             </div>
 
-            <button onclick="calculerScoreParCritere('fournisseurs')">Calculer Relations avec les Fournisseurs</button>
-            <div id="result_fournisseurs" class="result" style="display: none;"></div>
+            <button onclick="calculerScoreParCritere('relations')">Calculer Relations et conditions de travail</button>
+            <div id="result_relations" class="result" style="display: none;"></div>
 
-            <div class="criteria" id="communautes">
-                <h3>Respect des communautés</h3>
-                <label>Promouvez-vous des initiatives pour la réduction des inégalités ?</label>
-                <input type="radio" name="communautes_inegalites" value="1"> Oui
-                <input type="radio" name="communautes_inegalites" value="0"> Non
+            <div class="criteria" id="territoire">
+                <h3>Territoire et intérêt local</h3>
+                <label>L’entreprise soutient-elle activement le développement économique local ?</label>
+                <input type="radio" name="territoire_developpement" value="1"> Oui
+                <input type="radio" name="territoire_developpement" value="0"> Non
                 <br>
                 <label>Si oui : Quels programmes avez-vous mis en place ?</label>
-                <input type="text" name="communautes_programmes" placeholder="Réponse">
+                <input type="text" name="territoire_developpement" placeholder="Réponse">
                 <br>
-                <label>Favorisez-vous la cohésion sociale dans les zones où vous êtes implantés ?</label>
-                <input type="radio" name="communautes_cohesion" value="1"> Oui
-                <input type="radio" name="communautes_cohesion" value="0"> Non
+                <label>L’entreprise privilégie-t-elle l’embauche de collaborateurs locaux pour soutenir l’emploi dans la région ?</label>
+                <input type="radio" name="territoire_emploi" value="1"> Oui
+                <input type="radio" name="territoire_emploi" value="0"> Non
                 <br>
                 <label>Si oui : Comment impliquez-vous les communautés locales ?</label>
                 <input type="text" name="communautes_implication" placeholder="Réponse">
             </div>
 
-            <button onclick="calculerScoreParCritere('communautes')">Calculer Respect des Communautés</button>
-            <div id="result_communautes" class="result" style="display: none;"></div>
-
-            <div class="criteria" id="ethique">
-                <h3>Éthique</h3>
-                <label>Votre entreprise applique-t-elle des pratiques commerciales éthiques ?</label>
-                <input type="radio" name="ethique_commerciale" value="1"> Oui
-                <input type="radio" name="ethique_commerciale" value="0"> Non
-                <br>
-                <label>Si oui : Quelles lignes directrices encadrent vos pratiques commerciales ?</label>
-                <input type="text" name="ethique_lignes" placeholder="Réponse">
-                <br>
-                <label>Avez-vous une politique de lutte contre la corruption ?</label>
-                <input type="radio" name="ethique_corruption" value="1"> Oui
-                <input type="radio" name="ethique_corruption" value="0"> Non
-                <br>
-                <label>Si oui : Quels mécanismes de contrôle sont en place ?</label>
-                <input type="text" name="ethique_controle" placeholder="Réponse">
-                <br>
-                <label>Votre entreprise favorise-t-elle des pratiques de transparence dans ses opérations ?</label>
-                <input type="radio" name="ethique_transparence" value="1"> Oui
-                <input type="radio" name="ethique_transparence" value="0"> Non
-                <br>
-                <label>Si oui : Quels outils utilisez-vous pour communiquer de manière transparente (rapports, audits, etc.) ?</label>
-                <input type="text" name="ethique_outils" placeholder="Réponse">
-            </div>
-
-            <button onclick="calculerScoreParCritere('ethique')">Calculer Éthique</button>
-            <div id="result_ethique" class="result" style="display: none;"></div>
-
+            <button onclick="calculerScoreParCritere('territoire')">Calculer Territoire et intérêt local</button>
+            <div id="result_territoire" class="result" style="display: none;"></div>
         </div>
-        <br>
+
+            <br>
         <br>
         <div id="global_calculation">
             <h2 style="text-align: center">Calcul global</h2>

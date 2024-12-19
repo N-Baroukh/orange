@@ -43,7 +43,7 @@ function calculerScoreGlobal() {
     let scoreTotal = 0;
     let count = 0;
 
-    const criteres = ["impact", "conditions", "engagement", "gouvernance", "relations", "fournisseurs", "communautes", "ethique"];
+    const criteres = ["impact", "conditions", "loyaute", "gouvernance", "clients", "relations", "territoire"];
 
     for (const critere of criteres) {
         const moyenne = calculerMoyenne(critere);
