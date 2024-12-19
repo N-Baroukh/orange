@@ -38,6 +38,12 @@ nav {
     padding: 15px;
     justify-content: space-between;
     align-items: center;
+    width: 100%; /* La navbar prend toute la largeur de la page */
+    box-sizing: border-box; /* Inclut les padding et bordures dans la largeur */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Garantit que la navbar reste au-dessus des autres éléments */
+    margin: 0; /* Enlève toute marge externe */
 }
 
 /* Logo et liens */
@@ -48,14 +54,18 @@ nav ul {
     margin: 0;
     padding: 0;
     flex-wrap: wrap; /* Les éléments passent sur une nouvelle ligne si nécessaire */
+    width: 100%; /* La liste prend toute la largeur */
+    box-sizing: border-box; /* Assurez-vous que la largeur inclut les bordures et le padding */
 }
 
+/* Si le logo est trop large, ajustez sa taille */
 nav ul img {
     margin-right: 15px;
-    max-width: 120px; /* Ajustez la taille du logo */
+    max-width: 150px; /* Ajustez la taille du logo */
     height: auto;
 }
 
+/* Liens */
 nav ul li {
     margin: 0 15px;
 }
@@ -72,26 +82,32 @@ nav ul li a:hover {
     color: #333;
 }
 
-/* Responsiveness */
-/* Responsiveness */
-/* Responsiveness */
+/* Responsiveness - Sur mobile */
 @media (max-width: 768px) {
+    body, html {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* Enlève tout débordement horizontal */
+    }
+
     nav {
         flex-direction: column; /* Empile la navigation */
         align-items: flex-start; /* Aligne les éléments à gauche */
+        padding: 10px; /* Réduit le padding sur mobile */
     }
 
     nav ul {
         flex-direction: column; /* Empile les liens en colonne */
         width: 100%; /* Prend toute la largeur */
+        margin: 0; /* Enlève les marges externes */
     }
 
     nav ul li {
-        margin: 30px 0; /* Augmente encore davantage l'espacement vertical entre les liens */
+        margin: 20px 0; /* Augmente l'espacement vertical entre les liens */
     }
 
     nav ul img {
-        margin: 0 auto 40px; /* Centre le logo et ajoute un espace encore plus large */
+        margin: 0 auto 30px; /* Centre le logo et ajoute un espace plus large */
     }
 }
 
