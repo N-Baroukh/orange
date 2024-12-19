@@ -266,6 +266,22 @@ img {
     border-radius: 5px;
     margin-bottom: 20px;
 }
+#rse
+{
+    background-color: black;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+#objectif
+{
+    background-color: black;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
 .cards-container {
     display: flex;
     flex-wrap: wrap;
